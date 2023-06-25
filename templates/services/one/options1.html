@@ -1,0 +1,65 @@
+{%extends 'home.html'%}
+{% load static %}
+
+{%block title%}
+  <title>NOOR | OCT Service | Options</title>
+{%endblock%}
+{%block breadcrumb%}
+<!--/breadcrumb-bg-->
+<div class="breadcrumb-bg w3l-inner-page-breadcrumb py-5">
+      <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-3">
+        <h2 class="title pt-5">OCT Classification</h2>
+        <ul class="breadcrumbs-custom-path mt-3 text-center">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'services' %}"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span>Services</a></li>
+          <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span>Options</li>
+        </ul>
+      </div>
+</div>
+<!--//breadcrumb-bg-->
+{%endblock%}
+{%block content%}
+  <section class="w3l-serices-6 py-5" id="services1">
+    <div class="container py-lg-5 py-md-4 py-2">
+      <div class="title-content text-center">
+        <h6 class="title-subhny text-center">
+          Services
+        </h6>
+        <h3 class="title-w3l mb-sm-5 mb-4 pb-sm-o pb-2 text-center">Options</h3>
+      </div>
+      <!-- Upload Area -->
+      <div class="col-lg-4 col-md-6 col-sm-12" style="display: inline-block;margin-left: 26px;">
+        <div class="box-wrap">
+          <div class="box-wrap-grid">
+            <a href="{% url 'steps'%}"><div class="icon">
+              <span class="fa fa-pencil-square-o"></span>
+            </div></a>
+            <div class="info">
+              <h4><a href="{% url 'steps'%}">Steps</a></h4>
+            </div>
+          </div>
+          <p class="mt-3">Where you can find more details about the OCT classification service</p>
+        </div>
+      </div>
+      <!-- End Upload Area -->
+      <!-- Upload Area -->
+      <div class="col-lg-4 col-md-6 col-sm-12" style="display: inline-block;margin-left: 359px;">
+        <div class="box-wrap">
+          <div class="box-wrap-grid">
+            <a href="{% url 'subser'%}">
+              <div class="icon">
+                <span class="fa fa-eye"></span>
+              </div></a>
+
+            <div class="info">
+              <h4><a href="{% url 'subser'%}">Using Model</a></h4>
+            </div>
+          </div>
+          <p class="mt-3">Where you can diagnose OCT image and get result</p>
+        </div>
+      </div>
+      <!-- End Upload Area -->
+    </div>
+  </section>
+{%endblock%}
+

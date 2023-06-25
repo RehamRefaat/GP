@@ -1,0 +1,75 @@
+{%extends 'home.html'%}
+{% load static %}
+{%block title%}
+  <title>NOOR | Account | More Details</title>
+{%endblock%}
+{%block css%}
+<link rel="stylesheet" href="{% static 'css/res.css' %}">
+{%endblock%}
+
+{%block breadcrumb%}
+<!--/breadcrumb-bg-->
+<div class="breadcrumb-bg w3l-inner-page-breadcrumb py-5">
+      <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-3">
+        <h2 class="title pt-5">More Details</h2>
+        <ul class="breadcrumbs-custom-path mt-3 text-center">
+          <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'acc' %}"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span>Account</a></li>
+          <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> More Details </li>
+        </ul>
+      </div>
+</div>
+<!--//breadcrumb-bg-->
+{%endblock%}
+{%block content%}
+      <!-- <div class="title-content text-center">
+        <h3 class="jumbotron-heading">Your image is:</h3>
+      </div>
+<div class="col-lg-6 whybox-wrap-right pl-lg-5 position-relative mt-lg-0 mt-4" style="
+    display: block;
+    margin-left: 458px;
+    margin-right: auto;
+    width: 50%;
+    margin-bottom: 25px;">
+          <img src="/media/{{Operations.Input}}" alt="" class="img-fluid radius-image" style="    margin-left: 38px;">
+        </div>
+     <div class="title-content text-center" style="margin-bottom: 20px;">
+<h3 class="jumbotron-heading" >Results</h3><p>{{Operations.Output}}</p> </div>-->
+
+
+    <div class="jumbotron text-center">
+        <div>
+            <h1 class="jumbotron-heading">Results</h1>
+            <p style="margin-bottom:25px;">This is {{Operations.Output}}</p>
+            <h1 class="jumbotron-heading" style="margin-bottom:25px;">Your image is</h1>
+            <img id="picture" src="/media/{{Operations.Input}}" style="border-radius: 30px;
+    width: 256px;
+    height: 230px;
+    margin-bottom: 30px;">
+<table>
+        <thead style="color: #444;
+    font: 100%/30px 'Helvetica Neue', helvetica, arial, sans-serif;
+    text-shadow: 0 1px 0 #fff;">
+    <tr>
+        <th>CNV</th>
+        <th>DME</th>
+        <th>Drusen</th>
+        <th>Normal</th>
+    </tr>
+        </thead>
+        <tbody style="    color: #444;
+    font: 100%/30px 'Helvetica Neue', helvetica, arial, sans-serif;
+    text-shadow: 0 1px 0 #fff;">
+    <tr>
+        <td>{{Operations.CNV}}%</td>
+        <td>{{Operations.DME}}%</td>
+        <td>{{Operations.Drusen}}%</td>
+        <td>{{Operations.NormalOCT}}%</td>
+    </tr>
+        </tbody>
+      </table>
+
+
+        </div>
+    </div>
+{%endblock%}

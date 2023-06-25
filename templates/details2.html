@@ -1,0 +1,67 @@
+{%extends 'home.html'%}
+{% load static %}
+{%block title%}
+  <title>NOOR | Account | More Details</title>
+{%endblock%}
+{%block css%}
+<link rel="stylesheet" href="{% static 'css/res.css' %}">
+{%endblock%}
+
+{%block breadcrumb%}
+<!--/breadcrumb-bg-->
+<div class="breadcrumb-bg w3l-inner-page-breadcrumb py-5">
+      <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-3">
+        <h2 class="title pt-5">More Details</h2>
+        <ul class="breadcrumbs-custom-path mt-3 text-center">
+          <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'acc' %}"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span>Account</a></li>
+          <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> More Details </li>
+        </ul>
+      </div>
+</div>
+<!--//breadcrumb-bg-->
+{%endblock%}
+{%block content%}
+
+    <div class="jumbotron text-center">
+        <div>
+            <h1 class="jumbotron-heading">Results</h1>
+            <p style="margin-bottom:25px;">This is {{Operations.Output}}</p>
+            <h1 class="jumbotron-heading" style="margin-bottom:25px;">Your image is</h1>
+            <img id="picture" src="/media/{{Operations.Input}}" style="border-radius: 30px;
+    width: 256px;
+    height: 230px;
+    margin-bottom: 30px;">
+<table style="    text-align:center ;width: 850px;">
+        <thead style="color: #444;
+    font: 100%/30px 'Helvetica Neue', helvetica, arial, sans-serif;
+    text-shadow: 0 1px 0 #fff;">
+    <tr>
+        <th>AMD</th>
+        <th>Cataract</th>
+        <th>Diabetes</th>
+        <th>Glaucoma</th>
+        <th>Hypertension</th>
+        <th>Pathological Myopia</th>
+        <th>Normal</th>
+        <th>Other</th>
+    </tr>
+        </thead>
+        <tbody style="    color: #444;
+    font: 100%/30px 'Helvetica Neue', helvetica, arial, sans-serif;
+    text-shadow: 0 1px 0 #fff;">
+    <tr>
+        <td>{{Operations.MacularDegeneration}}%</td>
+        <td>{{Operations.Cataract}}%</td>
+        <td>{{Operations.Diabetes}}%</td>
+        <td>{{Operations.Glaucoma}}%</td>
+        <td>{{Operations.Hypertension}}%</td>
+        <td>{{Operations.PathologicalMyopia}}%</td>
+        <td>{{Operations.NormalMacular}}%</td>
+        <td>{{Operations.Other}}%</td>
+    </tr>
+        </tbody>
+      </table>
+        </div>
+    </div>
+{%endblock%}

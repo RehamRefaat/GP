@@ -1,0 +1,232 @@
+{%extends 'home.html'%}
+{% load static %}
+
+{%block title%}
+  <title>NOOR | About Us</title>
+{%endblock%}
+{%block css%}
+<style>
+  /* Media query for tablets */
+     @media only screen and (max-width : 768px) {
+       .about_img {
+         width :100%;
+         padding-left :20px;
+         padding-right :20px ;
+       }
+
+       img{
+           max-width:auto !important ;
+            height:auto !important ;
+            display:block !important ;
+            margin:auto !important ;
+          }
+     }
+
+@media screen and (max-width: 600px) {
+  img {
+    max-width: 50%;
+  }
+}
+     /* Media query for mobile devices */
+     @media only screen and (max-width :480px) {
+
+          img{
+              max-width:auto !important ;
+              height:auto !important ;
+              display:block !important ;
+              margin:auto !important ;
+          }
+     }
+</style>
+{%endblock%}
+{%block breadcrumb%}
+<!--/breadcrumb-bg-->
+    <div class="breadcrumb-bg w3l-inner-page-breadcrumb py-5">
+      <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-3">
+        <h2 class="title pt-5">About Us</h2>
+        <ul class="breadcrumbs-custom-path mt-3 text-center">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> About Us</li>
+        </ul>
+      </div>
+    </div>
+  <!--//breadcrumb-bg-->
+{%endblock%}
+{%block content%}
+<div class="title-content text-center">
+        <h3 class="title-w3l mb-sm-5 mb-4 pb-sm-o pb-2 text-center" style="color: var(--primary-color);padding-top:50px;">Our Supervisors</h3>
+      </div>
+
+<div style="display: flex;justify-content: space-between;">
+    <div class="bg_about" style="margin-left: 30px;">
+    <div class="container py-lg-5 py-md-4 py-2" style="padding-top: 0rem !important;">
+      <div class="row w3l-content-inf mt-lg-5 pt-lg-5" >
+        <div class="col-lg-5 w3l-content-left mt-lg-4">
+          <div class="about_img">
+          <figure style="margin-top:-192px;margin-left: 33px;"><img src="{% static 'images/dr.jfif' %}" alt="#" style="height: 310px;"/></figure>
+            <div class="social-container" style="width: 520px;">
+              <ul class="social-icons">
+                <li><a href="https://mostafasalem.netlify.app/"><i class="fa fa-home"></i></a></li>
+                <li><a href="https://github.com/MostafaSalem"><i class="fa fa-github"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/dr-mostafasalem/"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="https://www.facebook.com/dr.abobakr"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com/drabobakr"><i class="fa fa-twitter"></i></a></li>
+              </ul>
+          </div>
+          </div>
+          </div>
+
+        <div class="col-lg-7 w3l-content-right pl-lg-8 mt-lg-4">
+          <!--<h6 class="title-subhny mb-2">Our Supervisor</h6>-->
+          <h3 class="title-w3l mb-4" style="margin-top: 238px;
+    margin-left: -274px;">Dr Mostafa Abobakr Salem</h3>
+          <div style="margin-left: -277px;">
+          <p class="para-sub pr-lg-5 mt-md-4 mt-3 mx-auto">Assistant Professor of Computer Science Dept. faculty of Computers and Information, Assiut University.</p>
+          <p class="para-sub pr-lg-5 mt-md-4 mt-3 mx-auto">Manager of Computers Consultations Center (CCC), Assiut University.</p>
+          <p class="para-sub pr-lg-5 mt-md-4 mt-3 mx-auto">PHD in Medical Image Analysis (BRAIN MRI), VICOROB Research Institute, Department Of Computer , University of Girona</p>
+          <ul class="w3l-right-book mt-4">
+            <li><span class="fa fa-check"></span> His main interests are image processing, computer vision, statistical methods and machine learning.</li>
+            <li><span class="fa fa-check"></span> His current interests are developing robust techniques to improve the automated cross-sectional and longitudinal lesions detection and segmentation of Multiple Sclerosis patients.</li>
+            <li><span class="fa fa-check"></span> His research is mainly focused on novel deep learning methods applied to brain image analysis of magnetic resonance images. </li>
+          </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--//w3l-content-1-->
+  <!--/w3l-content-1-->
+    <div class="bg_about">
+    <div class="container py-lg-5 py-md-4 py-2" style="padding-top: 0rem !important;">
+      <div class="row w3l-content-inf mt-lg-5 pt-lg-5" style="padding-top: 0rem !important;margin-top: 0rem !important;">
+        <div class="col-lg-5 w3l-content-left mt-lg-4">
+          <div class="about_img">
+          <figure style="width: 451.05px;
+    /* height: 318px; */
+    margin-top: -96px;
+    margin-left: 144px;"><img src="{% static 'images/DRhazem.jpg' %}" alt="#" style="width: -webkit-fill-available;"/></figure>
+          </div>
+        </div>
+
+        <div class="col-lg-7 w3l-content-right pl-lg-8 mt-lg-4">
+          <h3 class="title-w3l mb-4" style="margin-top: 332px;
+    margin-left: -195px;">Dr Hazem Abdel-Motal Hazem</h3>
+          <div style="margin-left: -193px;">
+          <p class="para-sub pr-lg-5 mt-md-4 mt-3 mx-auto">Lecturer of Ophthalmology, Faculty of Medicine, Assiut University.</p>
+          <p class="para-sub pr-lg-5 mt-md-4 mt-3 mx-auto">Doctor and consultant of laser eye surgery, myopia, and astigmatism repair with laser.</p>
+          <ul class="w3l-right-book mt-4">
+            <li><span class="fa fa-check"></span> Bachelor of Medicine and Surgery September 1993 from Assiut University.</li>
+            <li><span class="fa fa-check"></span> Master of Ophthalmology December 27, 1998, from Assiut University.</li>
+            <li><span class="fa fa-check"></span> MD in Ophthalmology November 2005 from Assiut University. </li>
+          </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--//w3l-content-1-->
+
+</div>
+<!-- home page block grids -->
+  <section class="w3l-two-servicses py-5" id="services2">
+    <div class="container py-lg-5 py-md-4 py-2">
+      <div class="row bottom-ab-grids">
+        <div class="col-lg-6 bottom-ab-left align-self">
+          <h3 class="title-w3l mb-4">Who are we ?</h3>
+          <p class="">As bioinformatics students at the Faculty of Computers and Information Technology, we are passionate about machine learning and its potential applications in healthcare. Our goal is to assist ophthalmologists in diagnosing eye diseases more accurately through the development of a website. In the future, we hope to expand our platform to support other medical specializations as well. We strive for accuracy and precision in all aspects of our work. </p>
+        </div>
+        <div class="col-lg-6 bottom-right-grids pl-lg-5 mt-lg-0 mt-5">
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<lottie-player src="https://assets3.lottiefiles.com/packages/lf20_wg0utmug.json"  background="transparent"  speed="1"  style="width: auto; height:auto;"  loop  autoplay></lottie-player></div>
+      </div>
+    </div>
+  </section>
+<!-- //home page block grids -->
+
+<!-- our team -->
+  <section class="swiper mySwiper">
+
+    <div class="swiper-wrapper">
+
+      <div class="card swiper-slide">
+        <div class="card__image">
+          <img src="{% static 'images/randa3.jpeg' %}" alt="card image">
+        </div>
+
+        <div class="card__content">
+          <span class="card__title">Randa Adel Abdelaziz</span>
+          <span class="card__text">(Team Leader)</span>
+          <span class="card__name">Machine Learning Engineer</span>
+            <div class="social-container">
+              <ul class="social-icons">
+                <li><a href="https://www.linkedin.com/in/randa-adel2001/"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="https://github.com/Randa-Adel"><i class="fa fa-github"></i></a></li>
+                <li><a href="https://www.facebook.com/randa.adel.7583"><i class="fa fa-facebook"></i></a></li>
+              </ul>
+            </div>
+        </div>
+
+      </div>
+
+      <div class="card swiper-slide">
+        <div class="card__image">
+          <img src="{% static 'images/reham2.jpg' %}" alt="card image">
+        </div>
+
+        <div class="card__content">
+          <span class="card__title">Reham Refaat Zaki</span>
+          <span class="card__text">(Co Leader)</span>
+          <span class="card__name">Full-Stack Web Developer</span>
+          <div class="social-container">
+              <ul class="social-icons">
+                <li><a href="https://www.linkedin.com/in/reham-refaat-zaki-0905b2206/"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="https://github.com/RehamRefaat"><i class="fa fa-github"></i></a></li>
+                <li><a href="https://www.facebook.com/lolesh.zaki/"><i class="fa fa-facebook"></i></a></li>
+              </ul>
+        </div>
+        </div>
+      </div>
+
+      <div class="card swiper-slide">
+        <div class="card__image">
+          <img src="{% static 'images/amira.jpeg' %}" alt="card image">
+        </div>
+
+        <div class="card__content">
+          <span class="card__title">Amira Hussien Ahmed</span>
+          <span class="card__name">Machine Learning Engineer</span>
+          <div class="social-container">
+              <ul class="social-icons">
+                <li><a href="https://www.linkedin.com/in/amira-hussien-636522257/"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="https://github.com/MeraHussien?tab=overview&from=2023-05-01&to=2023-05-31"><i class="fa fa-github"></i></a></li>
+                <li><a href="https://www.facebook.com/amira.hussein.9400984"><i class="fa fa-facebook"></i></a></li>
+              </ul>
+         </div>
+        </div>
+      </div>
+      <div class="card swiper-slide">
+        <div class="card__image">
+          <img src="{% static 'images/alyaa.jpeg' %}" alt="card image">
+        </div>
+
+        <div class="card__content">
+          <span class="card__title">Aliaa Yaseen Abd El Kareem</span>
+          <span class="card__name">Front-End Web Developer</span>
+          <div class="social-container">
+              <ul class="social-icons">
+                <li><a href="https://www.linkedin.com/in/aliaa-yaseen-505a431a0/"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="https://github.com/Alyas18"><i class="fa fa-github"></i></a></li>
+                <li><a href="https://www.facebook.com/alyaa.yaseen.7"><i class="fa fa-facebook"></i></a></li>
+              </ul>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- our team -->
+
+
+
+
+
+{%endblock%}

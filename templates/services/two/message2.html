@@ -1,0 +1,113 @@
+{%extends 'home.html'%}
+{% load static %}
+
+  {%block title%}
+  <title>NOOR | Services | OCT Classification | Message</title>
+  {%endblock%}
+
+  <div class="header-w3l">
+  <!--header-->
+  <header id="site-header" class="header-w3l fixed-top">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg stroke">
+        <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/images/lOGO.png' %}" alt=""></a>
+        <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+          data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+          <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+          </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav mx-lg-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'services' %}">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about' %}">About us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contact' %}">Contact us</a>
+            </li>
+            <!--<li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+            <li class="nav-item">
+              <p class="nav-link">Welcome {{ user.username }}</p>
+            </li>-->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Welcome {{ user.username }}
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+            <a class="dropdown-item" href="{% url 'acc' %}">My account</a>
+            <a class="dropdown-item" href="#">Change password</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+          </div>
+        </li>
+      </ul>
+            <!--/search-right
+              <li class="search-bar ml-lg-3 mr-lg-5 mt-lg-0 mt-4">
+              <form class="search position-relative">
+                <input type="search" class="search__input" name="search" placeholder="Search here.."
+                  onload="equalWidth()" required="">
+                <span class="fa fa-search search__icon"></span>
+              </form>
+            </li>
+            //search-right-->
+          </ul>
+        </div>
+        <!-- toggle switch for light and dark theme -->
+        <div class="mobile-position">
+          <nav class="navigation">
+            <div class="theme-switch-wrapper">
+              <label class="theme-switch" for="checkbox">
+                <input type="checkbox" id="checkbox">
+                <div class="mode-container">
+                  <i class="gg-sun"></i>
+                  <i class="gg-moon"></i>
+                </div>
+              </label>
+            </div>
+          </nav>
+        </div>
+        <!-- //toggle switch for light and dark theme -->
+      </nav>
+    </div>
+  </header>
+</div>
+  <!-- //header -->
+  <!--/w3l-banner-content-->
+  {%block breadcrumb%}
+  <div class="banner-w3l-main">
+    <div class="w3l-banner-content">
+      <div class="container">
+        <div class="bannerhny-info text-center">
+          <h6 class="title-subhny mb-2">Thank you for using Noor website</h6>
+
+          <h3 style="font-size: 40px;
+    line-height: 55px;">You will receive an email with the result of the diagnosis immediately after the operation is completed</h3>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--//w3l-banner-content-->
+  {%endblock%}
+  <!-- banner bottom shape -->
+  <div class="position-relative">
+    <div class="shape overflow-hidden">
+      <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+      </svg>
+    </div>
+  </div>
+{%block content%}
+{%endblock%}
+  {%block footer%}
+{%endblock%}

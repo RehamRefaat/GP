@@ -1,0 +1,50 @@
+{%extends 'home.html'%}
+{% load static %}
+
+{%block title%}
+  <title>NOOR | OCT Service | Steps</title>
+{%endblock%}
+{%block breadcrumb%}
+<!--/breadcrumb-bg-->
+<div class="breadcrumb-bg w3l-inner-page-breadcrumb py-5">
+      <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-3">
+        <h2 class="title pt-5">Steps</h2>
+        <ul class="breadcrumbs-custom-path mt-3 text-center">
+            <li><a href="{% url 'services' %}">Services</a></li>
+            <li><a href="{% url 'opt' %}"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span>Options</a></li>
+            <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> Steps </li>
+        </ul>
+      </div>
+</div>
+<!--//breadcrumb-bg-->
+{%endblock%}
+{%block content%}
+<section class="w3l-two-servicses py-5" id="services2">
+    <div class="container py-lg-5 py-md-4 py-2">
+          <h3 class="title-w3l mb-4">Instructions</h3>
+          <p class="">Using OCT classification service is very simple, consisting of four steps:</p>
+          <ul class="w3l-right-book mt-4">
+            <li><span>1.</span>First, you have to register as a new user, or log into the system if you are already registered.</li>
+            <center>
+            <img src="{% static 'images/steps.png' %}" class="img-fluid-step radius-image">
+            </center>
+            <li><span>2.</span>Second, upload your OCT image as jpeg or jpg image to OCT classification service which is a free and powerful tool.</li>
+            <li><span>3.</span>Once your image is uploaded, NOOR Website will process your request as soon as possible and generate a report containing the results.</li>
+            <li><span>4.</span>Finally, you will receive an e-mail informing about your diagnosing results.</li>
+          </ul>
+    </div>
+    <div class="container py-lg-5 py-md-4 py-2">
+              <h3 class="title-w3l mb-4">About OCT Classification Service</h3>
+        <div style="width: 668px;">
+    <br><p class="">Artificial intelligence (AI) has the potential to revolutionize disease diagnosis and management by performing classification difficult for human experts and by rapidly reviewing immense amounts of images. Despite its potential, clinical interpretability and feasible preparation of AI remains challenging.</p>
+    <br><p class="">The traditional algorithmic approach to image analysis for classification previously relied on (1) handcrafted object segmentation, followed by (2) identification of each segmented object using statistical classifiers or shallow neural computational machine-learning classifiers designed specifically for each class of objects, and finally (3) classification of the image). Creating and refining multiple classifiers required many skilled people and much time and was computationally expensive .</p>
+    <br><p class="">The development of convolutional neural network layers has allowed for significant gains in the ability to classify images and detect objects in a picture. These are multiple processing layers to which image analysis filters, or convolutions, are applied. The abstracted representation of images within each layer is constructed by systematically convolving multiple filters across the image, producing a feature map that is used as input to the following layer. This architecture makes it possible to process images in the form of pixels as input and to give the desired classification as output. The image-to-classification approach in one classifier replaces the multiple steps of previous image analysis methods.</p>
+    <br><p class="">One method of addressing a lack of data in a given domain is to leverage data from a similar domain, a technique known as transfer learning. Transfer learning has proven to be a highly effective technique, particularly when faced with domains with limited data Rather than training a completely blank network, by using a feed-forward approach to fix the weights in the lower levels already optimized to recognize the structures found in images in general and retraining the weights of the upper levels with back propagation, the model can recognize the distinguishing features of a specific category of images, such as images of the eye, much faster and with significantly fewer training examples and less computational power.</p>
+       </div>
+        <img src="{% static 'images/ser/img_1.png' %}" style="margin-top: -1319px;
+    margin-left: 841px;">
+    <img src="{% static 'images/ser/img.png' %}" style="margin-top: -471px;
+    margin-left: 839px;">
+    </div>
+  </section>
+{%endblock%}

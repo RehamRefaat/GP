@@ -1,0 +1,100 @@
+{%extends 'home.html'%}
+{% load static %}
+
+{%block title%}
+  <title>NOOR | Contact us</title>
+{%endblock%}
+{%block breadcrumb%}
+<!--/breadcrumb-bg-->
+<div class="breadcrumb-bg w3l-inner-page-breadcrumb py-5">
+      <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-3">
+        <h2 class="title pt-5">Contact us</h2>
+        <ul class="breadcrumbs-custom-path mt-3 text-center">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> Contact us </li>
+        </ul>
+      </div>
+</div>
+<!--//breadcrumb-bg-->
+{%endblock%}
+{%block content%}
+<!--/contact-->
+  <section class="w3l-contact-2 py-5" id="contact">
+    <div class="container py-lg-5 py-md-4 py-2">
+      <div class="contact-grids d-grid">
+        <div class="contact-left">
+          <h6 class="title-subhny mb-1">Get in Touch</h6>
+          <h3 class="title-w3l mb-2">Contact Us</h3>
+          <p>We have a dedicated support center for all of your support needs. We usually get back to you within
+            12-24 hours.</p>
+          <div class="cont-details">
+            <div class="cont-top margin-up">
+              <div class="cont-left text-center">
+                <span class="fa fa-map-marker"></span>
+              </div>
+              <div class="cont-right">
+                <h6>Our Address</h6>
+                <p>Assiut university, Faculty Of Computer Science and Information</p>
+              </div>
+            </div>
+            <div class="cont-top margin-up">
+              <div class="cont-left text-center">
+                <span class="fa fa-phone"></span>
+              </div>
+              <div class="cont-right">
+                <h6>Call Us</h6>
+                <p>+(20) 01063413131</p>
+              </div>
+            </div>
+            <div class="cont-top margin-up">
+              <div class="cont-left text-center">
+                <span class="fa fa-envelope-o"></span>
+              </div>
+              <div class="cont-right">
+                <h6>Email Us</h6>
+                <p><a href="mailto:noorwebsite1@gmail.com" class="mail">noorwebsite1@gmail.com</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-right">
+          <form enctype="multipart/form-data" method="post" class="signin-form">
+             {% csrf_token %}
+            <div class="input-grids">
+              <input type="text" name="w3lName" id="w3lName" placeholder="Your Name*" class="contact-input"
+                required="" />
+              <input type="email" name="w3lSender" id="w3lSender" placeholder="Your Email*" class="contact-input"
+                required="" />
+              <input type="text" name="w3lSubject" id="w3lSubect" placeholder="Subject*" class="contact-input"
+                required="" />
+            </div>
+            <div class="form-input">
+              <textarea name="w3lMessage" id="w3lMessage" placeholder="Type your message here*" required=""></textarea>
+            </div>
+            <div class="w3l-submit text-lg-right">
+            <button class="btn btn-style btn-primary">Send Message</button>
+            </div>
+            {% if messages %}
+					{% for mess in messages %}
+					<h6 style="    font-size: 26px;
+    font-weight: 600;
+    margin-left: -413px;
+    margin-top: 30px;
+    line-height: 30px;
+    color: var(--primary-color);
+    display: block;">{{mess}}</h6>
+					{%endfor%}
+            {%endif%}
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- /map-->
+  <div class="map-iframe">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14195.043015747524!2d31.184317563130477!3d27.195255279437077!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14450bfb7a5cb539%3A0x38d71298729ac58a!2z2KzYp9mF2LnYqSDYo9iz2YrZiNi3!5e0!3m2!1sar!2seg!4v1664120289971!5m2!1sar!2seg" width="100%" height="400" frameborder="0" style="border: 0px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+  <!-- //map-->
+  <!-- /contact -->
+{%endblock%}

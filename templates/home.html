@@ -1,0 +1,1012 @@
+{% load static %}
+<!doctype html>
+<html lang="zxx">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="keywords"
+    content="Medick Responsive web template, Bootstrap Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+  {%block title%}
+  <title>NOOR  Home</title>
+  {%endblock%}
+  <link href="//fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Template CSS
+    <link rel="stylesheet" href="{% static 'css/style-starter.css' %}">
+-->
+  <!-- Link Swiper's CSS -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="{% static 'css/data.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style-starter.css' %}">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+      .account {
+        position: relative;
+      }
+
+      .account .dropdown-menu {
+        display: none;
+        position: absolute;
+        z-index: 1; /* ensure the dropdown is on top of other elements */
+      }
+
+      .account:hover .dropdown-menu {
+        display: block; /* show the dropdown when hovering over the account element */
+      }
+
+      .dropdown-menu ul {
+         list-style-type:none;
+         margin-left:18px;
+      }
+
+      .dropdown-menu li{
+       padding-top:5px !important;
+       padding-bottom:5px !important;
+
+      }
+
+      .dropdown-menu hr{
+       border-color:#cfcfcf!important;}
+
+      /* Style the account icon to make it look like a button */
+      .account-icon {
+         color:white;
+         font-size :18pt ;
+         cursor:pointer ;
+      }
+
+      /* Add some hover effects for better user experience*/
+      .account-icon:hover, .account-icon:focus {
+          text-decoration:none ;
+          opacity:.7 ;
+      }
+
+      /* Use Font Awesome icons for better appearance */
+      .fa-user:before { content:"\f007"; }
+      .fa-sign-out:before { content:"\f08b"; }
+      .fa-cog:before { content:"\f013"; }
+
+      </style>
+  {%block css%}
+  {%endblock%}
+
+</head>
+
+<body>
+
+  <div class="header-w3l">
+  <!--header-->
+  <header id="site-header" class="header-w3l fixed-top">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg stroke">
+        <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/images/lOGO.png' %}" alt=""></a>
+        <!--<a class="navbar-brand" href="{% static 'home.html' %}">
+          N<span class="sub-logo">OO</span>R</span>-->
+
+        <!-- if logo is image enable this
+            <a class="navbar-brand" href="home.html">
+                <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+            </a> -->
+        <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+          data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+          <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+          </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav mx-lg-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'services' %}">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about' %}">About us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contact' %}">Contact us</a>
+            </li>
+          <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Welcome {{ user.username }}
+          </a>
+        </li>
+      </ul>
+            <!--/search-right
+              <li class="search-bar ml-lg-3 mr-lg-5 mt-lg-0 mt-4">
+              <form class="search position-relative">
+                <input type="search" class="search__input" name="search" placeholder="Search here.."
+                  onload="equalWidth()" required="">
+                <span class="fa fa-search search__icon"></span>
+              </form>
+            </li>
+            //search-right-->
+            <div class="account">
+        <a href="#" class="account-icon"><i class="fa fa-user" style="color: #2caeed;margin-top: 7px;margin-left: 15px;font-size: 30px;"></i></a>
+        <div class="dropdown-menu" style="padding-top: 10px;margin-left: -27px;padding-bottom: 15px;">
+          <ul>
+          <li><a href="{% url 'acc' %}" style="font-size: 20px;color: lightskyblue;">My account</a></li>
+            <li><a href="{% url 'change' %}" style="font-size: 20px;color: lightskyblue;">Change Password</a></li>
+            <li><a href="{% url 'logout' %}" style="font-size: 20px;color: lightskyblue;">Log out</a></li>
+          </ul>
+        </div>
+      </div>
+          </ul>
+   </div>
+        <!-- toggle switch for light and dark theme -->
+        <div class="mobile-position">
+          <nav class="navigation">
+            <div class="theme-switch-wrapper">
+              <label class="theme-switch" for="checkbox">
+                <input type="checkbox" id="checkbox">
+                <div class="mode-container">
+                  <i class="gg-sun"></i>
+                  <i class="gg-moon"></i>
+                </div>
+              </label>
+            </div>
+          </nav>
+        </div>
+        <!-- //toggle switch for light and dark theme -->
+      </nav>
+    </div>
+  </header>
+</div>
+  <!-- //header -->
+  <!--/w3l-banner-content-->
+  {%block breadcrumb%}
+  <div class="banner-w3l-main">
+    <div class="w3l-banner-content">
+      <div class="container">
+        <div class="bannerhny-info text-center">
+          <h6 class="title-subhny mb-2">Computer Aided Diagnosing System</h6>
+          <h3 class="">your way for Diagnosing eye diseases</h3>
+          <!--Hide read more button
+            <a class="btn btn-style btn-white mt-sm-5 mt-4" href="{% static 'about.html' %}">Read More</a>
+          -->
+        </div>
+      </div>
+    </div>
+    <!-- home page block1
+    <section class="home-services pt-lg-0">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="box-wrap">
+              <div class="box-wrap-grid">
+                <div class="icon">
+                  <span class="fa fa-users"></span>
+                </div>
+                <div class="info">
+                  <p>Protect</p>
+                  <h4><a href="{% static '#url' %}">Qualified Team</a></h4>
+                </div>
+              </div>
+              <p class="mt-3">Lorem ipsum dolor sit amet consectetur ipsum elit. Qui eligendi vitae sit.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 mt-md-0 mt-4">
+            <div class="box-wrap">
+              <div class="box-wrap-grid">
+                <div class="icon">
+                  <span class="fa fa-shield"></span>
+                </div>
+                <div class="info">
+                  <p>Help</p>
+                  <h4><a href="{% static '#url' %}">Quality Service</a></h4>
+
+                </div>
+              </div>
+              <p class="mt-3">Lorem ipsum dolor sit amet consectetur ipsum elit. Qui eligendi vitae sit.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 mt-lg-0 mt-4">
+            <div class="box-wrap">
+              <div class="box-wrap-grid">
+                <div class="icon">
+                  <span class="fa fa-globe"></span>
+                </div>
+                <div class="info">
+                  <p>World</p>
+                  <h4><a href="{% static '#url' %}">Global Work</a></h4>
+
+                </div>
+              </div>
+              <p class="mt-3">Lorem ipsum dolor sit amet consectetur ipsum elit. Qui eligendi vitae sit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    //home page block1 -->
+  </div>
+  <!--//w3l-banner-content-->
+  {%endblock%}
+  <!-- banner bottom shape -->
+  <div class="position-relative">
+    <div class="shape overflow-hidden">
+      <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+      </svg>
+    </div>
+  </div>
+  <!-- banner bottom shape -->
+
+  {%block content%}
+  <!--/w3l-content-1
+  <div class="w3l-content-1 py-5">
+    <div class="container py-lg-5 py-md-4 py-2">
+      <div class="row w3l-content-inf mt-lg-5 pt-lg-5">
+        <div class="col-lg-5 w3l-content-left mt-lg-4">
+          <h6 class="title-subhny mb-2">About Us</h6>
+          <h3 class="title-w3l mb-4">Changing the way you receive healthcare.</h3>
+        </div>
+        <div class="col-lg-7 w3l-content-right pl-lg-5 mt-lg-4">
+          <p class="para-sub pr-lg-5 mt-md-4 mt-3 mx-auto">Lorem ipsum dolor sit amet consectetur ipsum elit. Qui
+            eligendi
+            vitae sit.Ea
+            ipsum sed consequuntur illum facere.Vivamus a ligula quam tesque et libero ut justo, ultrices in. Ut eu leo
+            non..
+          </p>
+          <p class="para-sub pr-lg-5 mt-md-4 mt-3 mx-auto">Lorem ipsum dolor sit amet consectetur ipsum elit. Qui
+            eligendi
+            vitae sit.Ea
+            ipsum sed consequuntur illum facere.
+          </p>
+          <a class="btn btn-style btn-outline-light mt-sm-5 mt-4 mr-2" href="{% static 'about.html' %}">
+            Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+   //w3l-content-1-->
+
+  <!-- /w3l-content-2
+  <div class="w3l-content-2 py-5">
+    <div class="container py-md-5 py-2">
+      <div class="row whybox-wrap">
+        <div class="col-lg-6 whybox-wrap-left">
+          <div class="title-content text-left">
+            <h6 class="title-subhny">Extraordinary Services</h6>
+            <h3 class="title-w3l mb-sm-5 mb-4 pb-2">Why You Should Choose Medick?.</h3>
+          </div>
+
+          <div class="whybox-wrap-grid mb-4">
+            <div class="icon">
+              <span class="fa fa-calendar"></span>
+            </div>
+            <div class="info">
+              <h4><a href="{% static '#url' %}">10 Years Of Experience</a></h4>
+              <p class="mt-3">Lorem ipsum dolor sit amet consectetur ipsum elit. Lorem ipsum dolor sit amet elit. </p>
+            </div>
+          </div>
+          <div class="whybox-wrap-grid mb-4">
+            <div class="icon">
+              <span class="fa fa-pencil-square-o"></span>
+            </div>
+            <div class="info">
+              <h4><a href="{% static '#url' %}">Free Consultation</a></h4>
+              <p class="mt-3">Lorem ipsum dolor sit amet consectetur ipsum elit. Lorem ipsum dolor sit amet elit. </p>
+            </div>
+          </div>
+          <div class="whybox-wrap-grid mb-4">
+            <div class="icon">
+              <span class="fa fa-shield"></span>
+            </div>
+            <div class="info">
+              <h4><a href="{% static '#url' %}">100% Guranteed</a></h4>
+              <p class="mt-3">Lorem ipsum dolor sit amet consectetur ipsum elit. Lorem ipsum dolor sit amet elit. </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 whybox-wrap-right pl-lg-5 position-relative mt-lg-0 mt-4">
+          <img src="{% static 'images/ab.jpg' %}" alt="" class="img-fluid radius-image">
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  //w3l-content-2-->
+  <!-- /w3l-content-4
+  <section class="w3l-content-4 py-5" id="features">
+    <div class="content-4-main py-lg-5 py-md-4">
+      <div class="container">
+        <div class="title-content text-center">
+          <h6 class="title-subhny">Extraordinary Services</h6>
+          <h3 class="title-w3l mb-sm-5 mb-4 pb-lg-2">Our Services.</h3>
+        </div>
+        <div class="content-info-in row">
+          <div class="content-left col-lg-6">
+            <div class="row content4-right-grids mb-sm-5 mb-4">
+              <div class="col-lg-2 col-3 content4-right-icon">
+                <div class="content4-icon icon-clr1">
+                  <span class="fa fa-american-sign-language-interpreting"></span>
+                </div>
+              </div>
+              <div class="col-lg-10 col-9 content4-right-info pl-4">
+                <h6><a href="{% static '#url' %}">Therapiya</a></h6>
+                <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere aperiam sequi optio
+                  adipisicing.</p>
+              </div>
+            </div>
+            <div class="row content4-right-grids mb-sm-5 mb-4">
+              <div class="col-lg-2 col-3 content4-right-icon">
+                <div class="content4-icon icon-clr2">
+                  <span class="fa fa-superpowers"></span>
+                </div>
+              </div>
+              <div class="col-lg-10 col-9 content4-right-info pl-4">
+                <h6><a href="{% static '#url' %}">Dentistry</a></h6>
+                <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere aperiam sequi optio
+                  adipisicing.</p>
+              </div>
+            </div>
+            <div class="row content4-right-grids mb-sm-5 mb-4">
+              <div class="col-lg-2 col-3 content4-right-icon">
+                <div class="content4-icon icon-clr2">
+                  <span class="fa fa-snowflake-o"></span>
+                </div>
+              </div>
+              <div class="col-lg-10 col-9 content4-right-info pl-4">
+                <h6><a href="{% static '#url' %}">Virusology</a></h6>
+                <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere aperiam sequi optio
+                  adipisicing.</p>
+              </div>
+            </div>
+          </div>
+          <div class="content-right col-lg-6 pl-lg-4 mt-lg-0 mt-2">
+            <div class="row content4-right-grids mb-sm-5 mb-4">
+              <div class="col-lg-2 col-3 content4-right-icon">
+                <div class="content4-icon icon-clr3">
+                  <span class="fa fa-building-o"></span>
+                </div>
+              </div>
+              <div class="col-lg-10 col-9 content4-right-info pl-4">
+                <h6><a href="{% static '#url' %}">Pharmocology</a></h6>
+                <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere aperiam sequi optio
+                  adipisicing.</p>
+              </div>
+            </div>
+            <div class="row content4-right-grids mb-sm-5 mb-4">
+              <div class="col-lg-2 col-3 content4-right-icon">
+                <div class="content4-icon icon-clr4">
+                  <span class="fa fa-heartbeat"></span>
+                </div>
+              </div>
+              <div class="col-lg-10 col-9 content4-right-info pl-4">
+                <h6><a href="{% static '#url' %}"> Cardiology</a></h6>
+                <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere aperiam sequi optio
+                  adipisicing.</p>
+              </div>
+            </div>
+            <div class="row content4-right-grids">
+              <div class="col-lg-2 col-3 content4-right-icon">
+                <div class="content4-icon icon-clr4">
+                  <span class="fa fa-eye"></span>
+                </div>
+              </div>
+              <div class="col-lg-10 col-9 content4-right-info pl-4">
+                <h6><a href="{% static '#url' %}"> Eye Surgery</a></h6>
+                <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere aperiam sequi optio
+                  adipisicing.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  //w3l-content-4-->
+
+  <!-- stats
+  <section class="w3l-stats py-lg-0 py-5" id="stats">
+    <div class="gallery-inner container py-lg-0 py-3">
+      <div class="row stats-con">
+        <div class="col-lg-3 col-6 stats_info counter_grid">
+          <span class="fa fa-users"></span>
+          <p class="counter">1100</p>
+          <h4>Expert Doctors</h4>
+        </div>
+        <div class="col-lg-3 col-6 stats_info counter_grid1">
+          <span class="fa fa-laptop"></span>
+          <p class="counter">1020</p>
+          <h4>Health Programs</h4>
+        </div>
+        <div class="col-lg-3 col-6 stats_info counter_grid mt-lg-0 mt-5">
+          <span class="fa fa-smile-o"></span>
+          <p class="counter">912</p>
+          <h4>Happy Clients</h4>
+        </div>
+        <div class="col-lg-3 col-6 stats_info counter_grid2 mt-lg-0 mt-5">
+          <span class="fa fa-trophy"></span>
+          <p class="counter">80</p>
+          <h4>Success Meets</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+  //stats -->
+  <!--/Blog-Posts-->
+  <section class="w3l-blog py-5" id="blog">
+    <div class="container py-lg-5 py-md-4 py-2">
+      <div class="title-content text-center">
+        <!--<h6 class="title-subhny text-center">Latest News</h6>-->
+        <h3 class="title-w3l pb-sm-o pb-2 text-center">Latest News</h3>
+      </div>
+      <div class="row inner-sec-w3ls">
+        <!--/services-grids-->
+        <div class="col-lg-4 col-md-6 about-in blog-grid-info text-left mt-5">
+          <div class="cards img">
+            <div class="card-body img">
+              <a href="https://www.aao.org/eye-health/diseases/amd-macular-degeneration" class="d-block">
+                <img src="{% static 'images/macula.png' %}" alt="" class="img-fluid radius-image">
+              </a>
+              <div class="blog-des mt-4">
+                <!--<h6 class="card-cap mb-2"><a href="https://wasatchphotonics.com/oct-tutorial/">Investigations</a></h6>-->
+                <h5 class="card-title mb-2"><a href="https://www.aao.org/eye-health/diseases/amd-macular-degeneration">What is Macular Degeneration?</a>
+                </h5>
+                <ul class="admin-post mb-3">
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 about-in blog-grid-info text-left mt-5">
+          <div class="cards img">
+            <div class="card-body img">
+              <a href="https://www.optometrists.org/general-practice-optometry/guide-to-eye-exams/eye-exams/what-is-an-oct-eye-exam/" class="d-block">
+                <img src="{% static 'images/oct2.jpg' %}" alt="" class="img-fluid radius-image">
+              </a>
+              <div class="blog-des mt-4">
+                <!--<h6 class="card-cap mb-2"><a href="https://www.optometrists.org/general-practice-optometry/guide-to-eye-exams/eye-exams/what-is-an-oct-eye-exam/">Researches</a></h6>-->
+                <h5 class="card-title mb-2"><a href="https://www.optometrists.org/general-practice-optometry/guide-to-eye-exams/eye-exams/what-is-an-oct-eye-exam/">When is an OCT scan used?</a></h5>
+                <ul class="admin-post mb-3">
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 about-in blog-grid-info text-left mt-5">
+          <div class="cards img">
+            <div class="card-body img">
+              <a href="https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/macular-edema" class="d-block">
+                <img src="{% static 'images/edema.jpg' %}" alt="" class="img-fluid radius-image">
+              </a>
+              <div class="blog-des mt-4">
+                <!--<h6 class="card-cap mb-2"><a href="https://eyeguru.org/essentials/interpreting-octs/">Your Health </a></h6>-->
+                <h5 class="card-title mb-2"><a href="https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/macular-edema">What is macular edema?</a>
+                </h5>
+                <ul class="admin-post mb-3">
+                </ul>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <!--//Blog-Posts-->
+
+  <!-- /w3l-content-3
+  <section class="w3l-content-3 py-5">
+    /content-6-section
+    <div class="content-3-info py-3">
+      <div class="container py-lg-4">
+        <div class="row appointment-formw3">
+          <div class="col-lg-6 welcome-left">
+            <h6 class="title-subhny mb-2">Free Appointment</h6>
+            <h3 class="title-w3l two mb-3">Make an Appointment</h3>
+            <p class="mb-3">
+              We believe in providing the best possible care to all our existing patients and welcomenew patients to
+              sample.</p>
+            <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere aperiam sequi optio adipisicing.</p>
+            <a class="btn btn-style btn-outline-light mt-sm-5 mt-4 mr-2" href="{% static '#' %}">
+              Contact Us</a>
+          </div>
+          <div class="col-lg-6 free-appointment pl-lg-5 mt-5">
+            <div class="appointment-form">
+              <form action="#" method="post">
+                <div class="fields-grid">
+                  <div class="styled-input">
+
+                    <div class="appointment-form-field">
+
+                      <input type="text" name="fullname" placeholder="Full Name" required="">
+                    </div>
+                  </div>
+                  <div class="styled-input">
+
+                    <div class="appointment-form-field">
+
+                      <input type="email" name="email" placeholder="Enter Email" required="">
+                    </div>
+                  </div>
+                  <div class="styled-input">
+
+                    <div class="appointment-form-field">
+
+                      <input type="text" name="phone" placeholder="Enter Number" required="">
+                    </div>
+                  </div>
+
+                  <div class="styled-input">
+
+                    <div class="appointment-form-field">
+
+                      <input type="date" name="date" placeholder="Set a Date" required="">
+                    </div>
+                  </div>
+                  <div class="styled-input">
+
+                    <div class="appointment-form-field">
+
+                      <select id="department" required="Specialization">
+                        <option value="">Specialization*</option>
+                        <option value="">Cardiology</option>
+                        <option value="">Heart Surgery</option>
+                        <option value="">Skin Care</option>
+                        <option value="">Body Check-up</option>
+                        <option value="">Numerology</option>
+                        <option value="">Diagnosis</option>
+                        <option value="">Others</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="styled-input">
+
+                    <div class="appointment-form-field">
+
+                      <select id="doctor" required="Select Doctor">
+                        <option value="">Select Doctor</option>
+                        <option value="">Doctor 1</option>
+                        <option value="">Doctor 2</option>
+                        <option value="">Doctor 3</option>
+                        <option value="">Doctor 4</option>
+                        <option value="">Doctor 5</option>
+                        <option value="">Doctor 6</option>
+                        <option value="">Doctor 7</option>
+                      </select>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="appointment-btn text-lg-right">
+                  <button type="submit" class="btn btn-style btn-primary mt-4">Book Appointment</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  //w3l-content-3-->
+  <!--<section class="w3l-clients w3l-test pb-5" id="testimonials">
+    <div class="midd-w3 py-5">
+      <div class="container py-lg-5 py-md-4 pt-2 pb-lg-5">
+        <div class="title-content text-center">
+          <h3 class="title-w3l mb-sm-5 mb-4 pb-sm-o pb-2 text-center">Scientific Articles</h3>
+        </div>
+        <div id="owl-demo2" class="owl-carousel owl-theme mt-4 py-md-2 mb-md-4">
+          <div class="item">
+            <div class="testimonial-content">
+              <div class="testimonial">
+                <blockquote>
+                  <q>New Frontiers in Biomedical Optics</q>
+                </blockquote>
+                <p>Optical coherence tomography (OCT) is a non-contact imaging technique which generates cross-sectional images of tissue with high resolution, Therefore it is especially valuable in organs, where traditional microscopic tissue diagnosis by means of biopsy is not available—such as the human eye.</p>
+              </div>
+              <div class="bottom-info mt-4">
+                <a class="comment-img" href="https://www.ncbi.nlm.nih.gov/books/NBK554044/"><input type="submit" class="btn btn-style btn-primary w-100 mt-3" value="Read More"></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimonial-content">
+              <div class="testimonial">
+                <blockquote>
+                  <q>The basics of OCT technology and its clinical applications in retinal disorders.</q>
+                </blockquote>
+                <p>Optical Coherence Tomography is a powerful noninvasive imaging modality that performs high resolution, micron-scale, cross-sectional imaging of the retina. Originally developed in 1991 by Huang, OCT technology has continually evolved and expanded within ophthalmologyand has been explored in a wide range of clinical applications</p>
+              </div>
+              <div class="bottom-info mt-4">
+                <a class="comment-img" href="https://www.eophtha.com/posts/optical-coherence-tomography"><input type="submit" class="btn btn-style btn-primary w-100 mt-3" value="Read More"></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimonial-content">
+              <div class="testimonial">
+                <blockquote>
+                  <q>En Face Enhanced-Depth Swept-Source Optical Coherence Tomography Features of Chronic Central Serous Chorioretinopathy</q>
+                </blockquote>
+                <p>To characterize en face features of the retinal pigment epithelium (RPE) and choroid in eyes with chronic central serous chorioretinopathy (CSCR) using a high-speed, enhanced-depth swept-source optical coherence tomography (SS-OCT) prototype.</p>
+              </div>
+              <div class="bottom-info mt-4">
+                <a class="comment-img" href="https://www.sciencedirect.com/science/article/abs/pii/S0161642013009147"><input type="submit" class="btn btn-style btn-primary w-100 mt-3" value="Read More"></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimonial-content">
+              <div class="testimonial">
+                <blockquote>
+                  <q>Lorem ipsum dolor sit amet</q>
+                </blockquote>
+                <p>Lorem ipsum dolor sit amet elit. hic odio tenetur. ante ipsum primis in
+                  faucibus orci luctus.Vivamus a ligula quam tesque et libero ut justo, ultrices in. </p>
+              </div>
+              <div class="bottom-info mt-4">
+                <a class="comment-img" href="{% static '#url' %}"><input type="submit" class="btn btn-style btn-primary w-100 mt-3" value="Read More"></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimonial-content">
+              <div class="testimonial">
+                <blockquote>
+                  <q>Pellen tesque libero ut justo</q>
+                </blockquote>
+                <p>Lorem ipsum dolor sit amet elit. hic odio tenetur. ante ipsum primis in
+                  faucibus orci luctus.Vivamus a ligula quam tesque et libero ut justo, ultrices in. </p>
+              </div>
+              <div class="bottom-info mt-4">
+                <a class="comment-img" href="{% static '#url' %}"><input type="submit" class="btn btn-style btn-primary w-100 mt-3" value="Read More"></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimonial-content">
+              <div class="testimonial">
+                <blockquote>
+                  <q>Lorem ipsum dolor sit amet.</q>
+                </blockquote>
+                <p>Lorem ipsum dolor sit amet elit. hic odio tenetur. ante ipsum primis in
+                  faucibus orci luctus.Vivamus a ligula quam tesque et libero ut justo, ultrices in. </p>
+              </div>
+              <div class="bottom-info mt-4">
+                <a class="comment-img" href="{% static '#url' %}"><input type="submit" class="btn btn-style btn-primary w-100 mt-3" value="Read More"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  testimonials section-->
+  <section class="w3l-clients w3l-test pb-5" id="testimonials">
+    <div class="midd-w3 py-5">
+      <div class="container py-lg-5 py-md-4 pt-2 pb-lg-5">
+        <div class="title-content text-center">
+          <h3 class="title-w3l mb-sm-5 mb-4 pb-sm-o pb-2 text-center">Scientific Articles</h3>
+        </div>
+        <div id="owl-demo2" class="owl-carousel owl-theme mt-4 py-md-2 mb-md-4" style="height: 530px;">
+          <div class="item">
+            <div class="testimonial-content">
+              <div class="testimonial">
+                <blockquote>
+                  <q>Embracing the Landscape of Therapeutics</q>
+                </blockquote>
+                <p>Before there were pills, prosthetics, and biologics, there were potions, poultices, and herbal teas. Disease dogs all life, and the innate desire to preserve life and restore health has propelled humans to experiment with medicines and therapeutics since before written history.</p>
+              </div>
+              <div class="bottom-info mt-4">
+                <a class="comment-img" href="https://www.cell.com/cell/fulltext/S0092-8674(20)30287-7"><input type="submit" class="btn btn-style btn-primary w-100 mt-3" value="Read More"></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimonial-content">
+              <div class="testimonial">
+                <blockquote>
+                  <q>Interpretable deep learning translation of GWAS and multi-omics findings to identify pathobiology and drug repurposing in Alzheimer’s disease</q>
+                </blockquote>
+                <p>Translating human genetic findings (genome-wide association studies [GWAS]) to pathobiology and therapeutic discovery remains a major challenge for Alzheimer’s disease (AD). We present a network topology-based deep learning framework to identify disease-associated genes (NETTAG).</p>
+              </div>
+              <div class="bottom-info mt-4">
+                <a class="comment-img" href="https://www.cell.com/cell-reports/fulltext/S2211-1247(22)01595-9"><input type="submit" class="btn btn-style btn-primary w-100 mt-3" value="Read More"></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimonial-content">
+              <div class="testimonial">
+                <blockquote>
+                  <q>Deep learning in image-based phenotypic drug discovery</q>
+                </blockquote>
+              <p>Modern drug discovery approaches often use high-content imaging to systematically study the effect on cells of large libraries of chemical compounds. By automatically screening thousands or millions of images to identify specific drug-induced cellular phenotypes</p>
+              </div>
+              <div class="bottom-info mt-4">
+                <a class="comment-img" href="https://www.cell.com/trends/cell-biology/fulltext/S0962-8924(22)00262-8"><input type="submit" class="btn btn-style btn-primary w-100 mt-3" value="Read More"></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="testimonial-content">
+              <div class="testimonial">
+                <blockquote>
+                  <q>Multiple high-regional-incidence cardiac disease diagnosis with deep learning and its potential to elevate cardiologist performance</q>
+                </blockquote>
+                <p>Currently, due to lack of large-scale datasets containing multiple arrhythmias and acute coronary syndrome-related diseases, AI-aided diagnosis for cardiac diseases is limited in clinical scenarios.</p>
+              </div>
+              <div class="bottom-info mt-4">
+                <a class="comment-img" href="https://www.cell.com/iscience/fulltext/S2589-0042(22)01706-0"><input type="submit" class="btn btn-style btn-primary w-100 mt-3" value="Read More"></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimonial-content">
+              <div class="testimonial">
+                <blockquote>
+                  <q>Continuous diagnosis and prognosis by controlling the update process of deep neural networks</q>
+                </blockquote>
+                <p>Patients in intensive care require rapid and accurate diagnoses at multiple time points. The quality and speed of these diagnoses can have a major impact on the success of treatment regimes for life-threatening conditions like sepsis or severe COVID-19.</p>
+              </div>
+              <div class="bottom-info mt-4">
+                <a class="comment-img" href="https://www.cell.com/patterns/fulltext/S2666-3899(23)00018-1"><input type="submit" class="btn btn-style btn-primary w-100 mt-3" value="Read More"></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimonial-content">
+              <div class="testimonial">
+                <blockquote>
+                  <q>Deep learning identifies morphological patterns of homologous recombination deficiency in luminal breast cancers from whole slide images</q>
+                </blockquote>
+                <p>Homologous recombination DNA-repair deficiency (HRD) is becoming a well-recognized marker of platinum salt and polyADP-ribose polymerase inhibitor chemotherapies in ovarian and breast cancers.</p>
+              </div>
+              <div class="bottom-info mt-4">
+                <a class="comment-img" href="https://www.cell.com/cell-reports-medicine/fulltext/S2666-3791(22)00436-0"><input type="submit" class="btn btn-style btn-primary w-100 mt-3" value="Read More"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+   <!--//testimonials section -->
+{%endblock%}
+  {%block footer%}
+  <!-- footer -->
+  <section class="w3l-footer-29-main">
+    <div class="footer-29 py-5">
+      <div class="container py-lg-4">
+        <div class="row footer-top-29" style="justify-content: space-between;">
+          <div class="col-lg-4 col-md-6 col-sm-7 footer-list-29 footer-1 pr-lg-5" style="padding-right: 1rem !important;">
+            <div class="footer-logo mb-3">
+              <a class="navbar-brand" href="{% static 'home.html' %}">NOOR</a>
+            </div>
+            <p>Noor is a website that offers services for ophthalmologists, including OCT and macula image classification to aid in disease diagnosis.</p>
+            <!--<p>Optical coherence tomography (OCT) is a non-invasive imaging test. OCT uses light waves to take cross-section pictures of your retina.</p>-->
+            {%block info%}
+            <ul class="mt-3">
+              <li><span class="fa fa-phone"></span> +(20) 01063413131</li>
+              <li><span class="fa fa-envelope-open-o"></span>
+                  noorwebsite1@gmail.com</li>
+            </ul>
+            {%endblock%}
+          </div>
+          <div class="col-lg-2 col-md-6 col-sm-5 col-6 footer-list-29 footer-2 mt-sm-0 mt-5">
+            <ul>
+              <h6 class="footer-title-29">Quick Links</h6>
+              <li><a href="{% url 'acc' %}">Account</a></li>
+              <li><a href="{% url 'services' %}">Services</a></li>
+              <li><a href="{% url 'about' %}">About us</a></li>
+              <li><a href="{% url 'contact' %}">Contact us</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 col-sm-5 col-6 footer-list-29 footer-3 mt-lg-0 mt-5">
+            <h6 class="footer-title-29">Services</h6>
+            <ul>
+              <li><a href="{% url 'opt' %}">OCT Classification</a></li>
+              <li><a href="{% url 'opt2' %}">Ocular Disease Recognition</a></li>
+            </ul>
+
+          </div>
+          <!--<div class="col-lg-4 col-md-6 col-sm-7 footer-list-29 footer-4 mt-lg-0 mt-5">
+            <h6 class="footer-title-29">Join us now</h6>
+            <p>Enter your email and get the latest news and information about Optical coherence tomography.</p>
+            {% block sing %}
+            <form action="{% url 'logout' %}" class="subscribe" method="post">
+                {%csrf_token%}
+              <button class="btn btn-style btn-primary w-100 mt-3">Sign up</button>
+            </form>
+            {%endblock%}
+          </div>-->
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- //footer -->
+{%endblock%}
+
+  <!-- copyright -->
+  <section class="w3l-copyright">
+    <!--<div class="container">
+      <div class="row bottom-copies">
+        <p class="col-lg-8 copy-footer-29">© 2021 Medick. All rights reserved. Design by <a
+            href="https://w3layouts.com/" target="_blank">
+            W3Layouts</a></p>
+
+        <div class="col-lg-4 main-social-footer-29">
+          <a href="{% static '#facebook' %}" class="facebook"><span class="fa fa-facebook"></span></a>
+          <a href="{% static '#twitter' %}" class="twitter"><span class="fa fa-twitter"></span></a>
+          <a href="{% static '#instagram' %}" class="instagram"><span class="fa fa-instagram"></span></a>
+          <a href="{% static '#linkedin' %}" class="linkedin"><span class="fa fa-linkedin"></span></a>
+        </div>
+
+      </div>
+    </div>
+  -->
+    <!-- move top -->
+    {% block edit %}
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+      &#10548;
+    </button>
+    {% endblock %}
+    <script>
+      // When the user scrolls down 20px from the top of the document, show the button
+      window.onscroll = function () {
+        scrollFunction()
+      };
+
+      function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          document.getElementById("movetop").style.display = "block";
+        } else {
+          document.getElementById("movetop").style.display = "none";
+        }
+      }
+
+      // When the user clicks on the button, scroll to the top of the document
+      function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+    </script>
+    <!-- /move top -->
+  </section>
+  <!-- //copyright -->
+  <!--//footer-->
+  <!-- Template JavaScript -->
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <!-- Initialize Swiper
+        loop: true, -->
+
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      autoplay:true,
+      autoplayTimeout:1000,
+      autoplayHoverPause:true,
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 300,
+        modifier: 1,
+        slideShadows: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+      },
+    });
+  </script>
+
+
+
+  <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'js/theme-change.js' %}"></script>
+  <!-- owl carousel -->
+  <script src="{% static 'js/owl.carousel.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+        integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(".file").on('change',function(e){
+            var filename = e.target.files[0].name;
+            $(".filename").text(filename);
+            $(".upload-label").addClass("progress-bar");
+
+
+        });
+    </script>
+  <!-- script for tesimonials carousel slider -->
+  <script>
+    $(document).ready(function () {
+      $("#owl-demo2").owlCarousel({
+        loop: true,
+        nav: false,
+        margin: 50,
+        responsiveClass: true,
+        responsive: {
+          0: {
+            items: 1,
+            nav: false
+          },
+          736: {
+            items: 1,
+            nav: false
+          },
+          991: {
+            items: 2,
+            margin: 30,
+            nav: false
+          },
+          1080: {
+            items: 3,
+            nav: false
+          }
+        }
+      })
+    })
+  </script>
+  <!-- //script for tesimonials carousel slider -->
+  <!-- stats number counter-->
+  <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'js/jquery.countup.js' %}"></script>
+  <script>
+    $('.counter').countUp();
+  </script>
+  <!-- //stats number counter -->
+  <script src="{% static 'js/owl.carousel.js' %}"></script>
+
+  <!-- disable body scroll which navbar is in active -->
+  <script>
+    $(function () {
+      $('.navbar-toggler').click(function () {
+        $('body').toggleClass('noscroll');
+      })
+    });
+  </script>
+  <!-- disable body scroll which navbar is in active -->
+
+  <!--/MENU-JS-->
+  <script>
+    $(window).on("scroll", function () {
+      var scroll = $(window).scrollTop();
+
+      if (scroll >= 80) {
+        $("#site-header").addClass("nav-fixed");
+      } else {
+        $("#site-header").removeClass("nav-fixed");
+      }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function () {
+      $("header").toggleClass("active");
+    });
+    $(document).on("ready", function () {
+      if ($(window).width() > 991) {
+        $("header").removeClass("active");
+      }
+      $(window).on("resize", function () {
+        if ($(window).width() > 991) {
+          $("header").removeClass("active");
+        }
+      });
+    });
+  </script>
+  <!--//MENU-JS-->
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+
+
+
+
+</body>
+
+</html>
