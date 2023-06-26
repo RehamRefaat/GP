@@ -30,23 +30,26 @@ SECRET_KEY = 'django-insecure--%ipoua)$knk5^-krx3uomxz#_oj_qr_s-md*7umgk_&2-@omz
 
 # SECURITY WARNING: don't run with debug turned on in production!
 "New Change By Reham"
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
 # Application definition
 "New Change By Reham line1"
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'doctor.apps.DoctorConfig',
 ]
 "New Change By Reham line2"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -125,15 +128,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
-"""
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-
+"""
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ['static/']
 STATICFILES_DIRS = (
@@ -150,7 +153,6 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ.get('noorwebsite1@gmail.com', '')
 EMAIL_HOST_PASSWORD = os.environ.get('xugvwvwljpygmftb', '')
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
