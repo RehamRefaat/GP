@@ -17,6 +17,11 @@ import home.apps
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+"New Change By Reham"
+import environ
+"New Change By Reham"
+env = environ.Env()
+environ.Env.read_env()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -24,9 +29,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure--%ipoua)$knk5^-krx3uomxz#_oj_qr_s-md*7umgk_&2-@omz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+"New Change By Reham"
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -74,7 +80,7 @@ WSGI_APPLICATION = 'oct.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME':'gradproject',
@@ -82,8 +88,13 @@ DATABASES = {
         'USER':'postgres',
         'PASSWORD':'Noor2R3A2023'
     }
-}
+}"""
 
+"New Change By Reham"
+import dj_database_url
+DATABASES = {
+    'default': dj_database_url.parse(env('DATABASE_URL'))
+}
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
