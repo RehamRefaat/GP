@@ -304,9 +304,11 @@ def Macula_subservices_page(request):
         image = FileSystemStorage()
         request.FILES['image'].name = "image.jpeg"
         file = image.save(pathin + "/" + request.FILES['image'].name, request.FILES['image'])
-
-        subprocess.call(f"docker run  -v  {pathin}:/WorkingFiles/in  -v {pathout}:/WorkingFiles/out -v "
-                        f"F:\GraduationProject\oct\ML\model2:/WorkingFiles/model binmacula")
+        subprocess.call(
+            f"docker run -v {pathin}:/WorkingFiles/in -v {pathout}:/WorkingFiles/out -v noorwebsite/noor_website1 /bin/bash -c 'python3 /WorkingFiles/model/main.py --input-dir /WorkingFiles/in --output-dir /WorkingFiles/out'",
+            shell=True)
+        """subprocess.call(f"docker run  -v  {pathin}:/WorkingFiles/in  -v {pathout}:/WorkingFiles/out -v "
+                        f"F:\GraduationProject\oct\ML\model2:/WorkingFiles/model binmacula")"""
         readfile = open(f"{root_path}/out/out.txt", "r")
         output = readfile.readline()
         readfile.close()
