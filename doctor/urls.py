@@ -1,12 +1,13 @@
 from django.contrib.auth import views as auth_views
 from django.urls import path,include
 from .views import *
+
 urlpatterns = [
     path('', loginpage, name="login"),
     path('logout/', logoutpage, name="logout"),
     path('register/', register,name="register"),
     path('home/', home_page,name='home'),
-    path('about/', about_page, name='about'),
+    path('about/',about_page,name='about'),
 
     path('services/', services_page, name='services'),
     path('OCT-service/options/using-model/', OCT_subservices_page, name='subser'),

@@ -14,7 +14,6 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 "New Change By Reham"
-#import home.apps
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,20 +37,16 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 "New Change By Reham line1"
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home.apps.HomeConfig',
-    'doctor.apps.DoctorConfig',
 ]
 "New Change By Reham line2"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -133,12 +128,13 @@ USE_TZ = True
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
+"""
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-"""
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ['static/']
 STATICFILES_DIRS = (
@@ -153,8 +149,9 @@ MEDIA_URL = '/media/'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'noorwebsite1@gmail.com'
-EMAIL_HOST_PASSWORD = 'xugvwvwljpygmftb'
+EMAIL_HOST_USER = os.environ.get('noorwebsite1@gmail.com', '')
+EMAIL_HOST_PASSWORD = os.environ.get('xugvwvwljpygmftb', '')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
