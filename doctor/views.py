@@ -10,16 +10,21 @@ from django.contrib import messages
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.conf import settings
+from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
 from threading import Thread
-import subprocess
-import warnings
 from django.utils.html import format_html
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse
 from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError
+from django.views.decorators.cache import never_cache
+import subprocess
+import warnings
+
 warnings.filterwarnings("ignore")
+
+
+
 
 
 def register(request):
@@ -29,8 +34,9 @@ def register(request):
         doctorName = request.POST['Name']
         doctorEmail = request.POST['Email']
         doctorPassword = request.POST['Password']
-        confirm=request.POST['conpass']
-        name_validator = RegexValidator(regex=r'^[a-zA-Z0-9@/./+/-/_]+$', message='Letters, digits and @/./+/-/_ only.', code='invalid_name')
+        confirm = request.POST['conpass']
+        name_validator = RegexValidator(regex=r'^[a-zA-Z0-9@/./+/-/_]+$', message='Letters, digits and @/./+/-/_ only.',
+                                        code='invalid_name')
         try:
             name_validator(doctorName)
         except ValidationError as e:
@@ -72,8 +78,10 @@ def loginpage(request):
             messages.success(request, "There Was An Error Logging In ,Try Again...")
             return HttpResponseRedirect('/')
 
-
-
+@login_required(login_url='login')
+@never_cache
+def home_page(request):
+    return render(request, "home.html")
 
 
 def logoutpage(request):
@@ -82,11 +90,36 @@ def logoutpage(request):
 
 
 @login_required(login_url='login')
+def contact_page(request):
+    if request.method == 'POST':
+        name = request.POST['w3lName']
+        sender = request.POST['w3lSender']
+        subject = request.POST['w3lSubject']
+        message = request.POST['w3lMessage'] + f"\n\nFrom User: {name}\nUser Email: {sender}"
+
+        send_mail(
+            subject=subject,
+            message=message,
+            from_email=sender,
+            recipient_list=["noorwebsite1@gmail.com"],
+        )
+
+        messages.success(
+            request,
+            "Thank you for your email. We will contact you as soon as possible."
+        )
+
+        return HttpResponseRedirect('/contact/')
+
+    else:
+        return render(request, "contact.html")
+
+
+@login_required(login_url='login')
 def account_page(request):
     op = Operation.objects.filter(users=request.user)
     user = User.objects.get(email=request.user.email)
     return render(request, "myaccount.html", {"Operations": op, "User": user})
-
 
 
 @login_required(login_url='login')
@@ -110,7 +143,7 @@ def edit_page(request):
 def change_page(request):
     user = User.objects.get(password=request.user.password)
     if request.method == 'GET':
-        return render(request, "changepassd.html",{"User": user})
+        return render(request, "changepassd.html", {"User": user})
     elif request.method == 'POST':
         new_password = request.POST['newpass']
         confirm_password = request.POST['conpass']
@@ -123,7 +156,6 @@ def change_page(request):
             return HttpResponseRedirect('/account/changepassword')
 
 
-
 @login_required(login_url='login')
 def details_page(request, pk):
     op = Operation.objects.get(id=pk)
@@ -131,6 +163,16 @@ def details_page(request, pk):
         return render(request, "details.html", {"Operations": op})
     else:
         return render(request, "details2.html", {"Operations": op})
+
+
+@login_required(login_url='login')
+def about_page(request):
+    return render(request, "about.html")
+
+
+@login_required(login_url='login')
+def services_page(request):
+    return render(request, "services/services.html")
 
 
 @login_required(login_url='login')
@@ -156,6 +198,7 @@ def send_email(user_email, image_path, context):
     msg.attach_alternative(html_content, "text/html")
     msg.attach_file(image_path)
     msg.send()
+
 
 @login_required(login_url='login')
 def OCT_subservicesnew_page(request):
@@ -185,10 +228,10 @@ def OCT_subservices_page(request):
         readfile = open(f"{root_path}/out/out.txt", "r")
         output = readfile.readline()
         readfile.close()
-        con='/media/'+file
+        con = '/media/' + file
         if output == "This is not OCT images":
             messages.success(request, format_html("This is not OCT image<br> Please upload another photo"))
-            return render(request, "services/one/subservicesnew.html",{'context':str(con)})
+            return render(request, "services/one/subservicesnew.html", {'context': str(con)})
 
         else:
             readfile2 = open(f"{root_path}/out/out2.txt", "r")
@@ -215,8 +258,9 @@ def OCT_subservices_page(request):
             t1 = Thread(target=async_send, args=())
             t1.start()
             messages.success(request,
-                             format_html("Thank you for using Noor website.<br> You will receive an email with the result of the diagnosis immediately after the operation is completed"))
-            return render(request, "services/one/subservicesnew.html",{'context':str(con)})
+                             format_html(
+                                 "Thank you for using Noor website.<br> You will receive an email with the result of the diagnosis immediately after the operation is completed"))
+            return render(request, "services/one/subservicesnew.html", {'context': str(con)})
 
 
 @login_required(login_url='login')
@@ -267,10 +311,10 @@ def Macula_subservices_page(request):
         readfile = open(f"{root_path}/out/out.txt", "r")
         output = readfile.readline()
         readfile.close()
-        con='/media/'+file
+        con = '/media/' + file
         if output == "This is not Macula image":
             messages.success(request, format_html("This is not Macula image<br> Please upload another photo"))
-            return render(request, "services/two/subservicesnew2.html",{'context':str(con)})
+            return render(request, "services/two/subservicesnew2.html", {'context': str(con)})
         else:
             readfile2 = open(f"{root_path}/out/out2.txt", "r")
             lines = readfile2.readlines()
@@ -303,6 +347,6 @@ def Macula_subservices_page(request):
             t1 = Thread(target=async_send, args=())
             t1.start()
             messages.success(request,
-                             format_html("Thank you for using Noor website.<br> You will receive an email with the result of the diagnosis immediately after the operation is completed"))
-            return render(request, "services/two/subservicesnew2.html",{'context':str(con)})
-
+                             format_html(
+                                 "Thank you for using Noor website.<br> You will receive an email with the result of the diagnosis immediately after the operation is completed"))
+            return render(request, "services/two/subservicesnew2.html", {'context': str(con)})
