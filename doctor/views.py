@@ -347,7 +347,7 @@ def Macula_subservices_page(request):
         image = FileSystemStorage()
         request.FILES['image'].name = "image.jpeg"
         file = image.save(pathin + "/" + request.FILES['image'].name, request.FILES['image'])"""
-        root_path = os.path.join('/mnt/data/oct/media/users', name, 'tasks',datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
+        root_path = os.path.join('/media/users', name, 'tasks',datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
         list = ['in', 'out']
         pathin = os.path.join(root_path, str(list[0]))
         os.makedirs(pathin, exist_ok=True)

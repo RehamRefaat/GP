@@ -16,7 +16,11 @@ from pathlib import Path
 "New Change By Reham"
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+MEDIA_ROOT = os.environ.get('MEDIA_ROOT', os.path.join(BASE_DIR, 'media'))
+MEDIA_URL = '/media/'
 
+UPLOADS_ROOT = os.environ.get('UPLOADS_ROOT', '/mnt/data/myapp/uploads')
+UPLOADS_URL = '/uploads/'
 "New Change By Reham"
 import environ
 "New Change By Reham"
@@ -146,18 +150,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 """
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-"""MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-MEDIA_URL = '/media/'"""
-MEDIA_ROOT= '/mnt/data/oct/media/'
-MEDIA_URL='/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ.get('noorwebsite1@gmail.com', '')
 EMAIL_HOST_PASSWORD = os.environ.get('xugvwvwljpygmftb', '')
-DEFAULT_FROM_EMAIL = os.environ.get('noorwebsite1@gmail.com')
-SERVER_EMAIL = os.environ.get('noorwebsite1@gmail.com')
-# Media Settings
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
