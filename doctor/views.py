@@ -121,7 +121,7 @@ def register(request):
             doctoruser = User.objects.create_user(doctorName, doctorEmail, doctorPassword)
             doctoruser.save()
             foldername = doctorName.replace(" ", "")
-            path = "/mnt/data/oct/media/users" + "/" + foldername
+            path = "/opt/render/project/src/media/users" + "/" + foldername
             if not os.path.exists(path):
                 os.makedirs(path)
             return HttpResponseRedirect('/')
