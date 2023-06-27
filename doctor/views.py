@@ -17,6 +17,7 @@ from django.utils.html import format_html
 from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError
 from django.views.decorators.cache import never_cache
+import docker
 import subprocess
 import warnings
 from django.contrib.auth.decorators import login_required
