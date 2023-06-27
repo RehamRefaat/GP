@@ -3,6 +3,8 @@ import datetime
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
+
+from oct.settings import BASE_DIR
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -338,7 +340,8 @@ def Macula_subservices_page(request):
         pathout = os.path.join(root_path, str(list[1]))
         os.makedirs(pathout, exist_ok=True)
         """
-        """        root_path = os.path.join('media', 'users', name, 'tasks', datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
+
+        root_path = os.path.join(BASE_DIR+'media', 'users', name, 'tasks', datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
         list = ['in', 'out']
         pathin = os.path.join(root_path, str(list[0]))
         os.makedirs(pathin, exist_ok=True)
@@ -346,8 +349,8 @@ def Macula_subservices_page(request):
         os.makedirs(pathout, exist_ok=True)
         image = FileSystemStorage()
         request.FILES['image'].name = "image.jpeg"
-        file = image.save(pathin + "/" + request.FILES['image'].name, request.FILES['image'])"""
-        root_path = os.path.join('/media/users', name, 'tasks',datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
+        file = image.save(pathin + "/" + request.FILES['image'].name, request.FILES['image'])
+        """        root_path = os.path.join('/media/users', name, 'tasks',datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
         list = ['in', 'out']
         pathin = os.path.join(root_path, str(list[0]))
         os.makedirs(pathin, exist_ok=True)
@@ -355,7 +358,7 @@ def Macula_subservices_page(request):
         os.makedirs(pathout, exist_ok=True)
         image = FileSystemStorage()
         request.FILES['image'].name = "image.jpeg"
-        file = image.save(os.path.join(pathin, "image.jpeg"), request.FILES['image'])
+        file = image.save(os.path.join(pathin, "image.jpeg"), request.FILES['image'])"""
         """subprocess.call(f"docker run  -v  {pathin}:/WorkingFiles/in  -v {pathout}:/WorkingFiles/out -v "
                         f"F:\GraduationProject\oct\ML\model2:/WorkingFiles/model binmacula")"""
         client = docker.from_env()
