@@ -145,35 +145,20 @@ STATICFILES_DIRS = (
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 """
 
-"""EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-MEDIA_URL = '/media/'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+"""MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'"""
+MEDIA_ROOT= '/mnt/data/oct/media/'
+MEDIA_URL='/media/'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ.get('noorwebsite1@gmail.com', '')
-EMAIL_HOST_PASSWORD = os.environ.get('xugvwvwljpygmftb', '')"""
-# Email Settings
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL = 'noorwebsite1@gmail.com'
-SERVER_EMAIL = 'noorwebsite1@gmail.com'
-
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-
-# You need to replace EMAIL_HOST_USER and EMAIL_HOST_PASSWORD with actual values
-# If two-factor authentication is enabled for your gmail account then create a new App Password instead of using your regular password.
-if DEBUG:
-    EMAIL_HOST_USER = os.environ.get('noorwebsite1@gmail.com')
-    EMAIL_HOST_PASSWORD = os.environ.get('xugvwvwljpygmftb')
-else:
-    # Use dummy values during development/testing
-    EMAIL_HOST_USER = ''
-    EMAIL_HOST_PASSWORD =''
-
+EMAIL_HOST_PASSWORD = os.environ.get('xugvwvwljpygmftb', '')
+DEFAULT_FROM_EMAIL = os.environ.get('noorwebsite1@gmail.com')
+SERVER_EMAIL = os.environ.get('noorwebsite1@gmail.com')
 # Media Settings
-MEDIA_ROOT= '/mnt/data/oct/media/'
-MEDIA_URL='/media/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
