@@ -313,9 +313,9 @@ def Macula_subservices_page(request):
         image = FileSystemStorage()
         request.FILES['image'].name = "image.jpeg"
         file = image.save(pathin + "/" + request.FILES['image'].name, request.FILES['image'])
-        subprocess.call(["/usr/bin/docker", "pull", "noorwebsite/noor_website1"])
-        subprocess.call(
-            ["/usr/bin/docker", "run", "-v", f"{pathin}:/WorkingFiles/in", "-v", f"{pathout}:/WorkingFiles/out", "-v",
+        subprocess.run(["docker", "pull", "noorwebsite/noor_website1"])
+        subprocess.run(
+            ["docker", "run", "-v", f"{pathin}:/WorkingFiles/in", "-v", f"{pathout}:/WorkingFiles/out", "-v",
              "model2:/WorkingFiles/model", "noorwebsite/noor_website1"])
         """subprocess.call(f"docker run  -v  {pathin}:/WorkingFiles/in  -v {pathout}:/WorkingFiles/out -v "
                         f"F:\GraduationProject\oct\ML\model2:/WorkingFiles/model binmacula")"""
