@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure--%ipoua)$knk5^-krx3uomxz#_oj_qr_s-md*7umgk_&2-@omz
 
 # SECURITY WARNING: don't run with debug turned on in production!
 "New Change By Reham"
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -163,7 +163,7 @@ EMAIL_PORT = 587
 
 # You need to replace EMAIL_HOST_USER and EMAIL_HOST_PASSWORD with actual values
 # If two-factor authentication is enabled for your gmail account then create a new App Password instead of using your regular password.
-if not DEBUG:
+if DEBUG:
     EMAIL_HOST_USER = os.environ.get('noorwebsite1@gmail.com')
     EMAIL_HOST_PASSWORD = os.environ.get('xugvwvwljpygmftb')
 else:
