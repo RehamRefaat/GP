@@ -294,8 +294,16 @@ def Macula_subservices_page(request):
     elif request.method == 'POST':
         current_user = request.user
         name = str(current_user).replace(" ", "")
+        """New change by reham
         root_path = f'F:/GraduationProject/oct/media/users/{name}/tasks/' + datetime.datetime.now().strftime(
             '%Y/%m/%d_%H-%M-%S')
+        list = ['in', 'out']
+        pathin = os.path.join(root_path, str(list[0]))
+        os.makedirs(pathin, exist_ok=True)
+        pathout = os.path.join(root_path, str(list[1]))
+        os.makedirs(pathout, exist_ok=True)
+        """
+        root_path = os.path.join('media', 'users', name, 'tasks', datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
         list = ['in', 'out']
         pathin = os.path.join(root_path, str(list[0]))
         os.makedirs(pathin, exist_ok=True)
@@ -304,9 +312,10 @@ def Macula_subservices_page(request):
         image = FileSystemStorage()
         request.FILES['image'].name = "image.jpeg"
         file = image.save(pathin + "/" + request.FILES['image'].name, request.FILES['image'])
+        subprocess.call(["docker", "pull", "noorwebsite/noor_website1"])
         subprocess.call(
-            f"docker run -v {pathin}:/WorkingFiles/in -v {pathout}:/WorkingFiles/out -v noorwebsite/noor_website1 /bin/bash -c 'python3 /WorkingFiles/model/main.py --input-dir /WorkingFiles/in --output-dir /WorkingFiles/out'",
-            shell=True)
+            ["docker", "run", "-v", f"{pathin}:/WorkingFiles/in", "-v", f"{pathout}:/WorkingFiles/out", "-v",
+             "model2:/WorkingFiles/model", "noorwebsite/noor_website1"])
         """subprocess.call(f"docker run  -v  {pathin}:/WorkingFiles/in  -v {pathout}:/WorkingFiles/out -v "
                         f"F:\GraduationProject\oct\ML\model2:/WorkingFiles/model binmacula")"""
         readfile = open(f"{root_path}/out/out.txt", "r")
