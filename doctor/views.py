@@ -338,16 +338,6 @@ def Macula_subservices_page(request):
         pathout = os.path.join(root_path, str(list[1]))
         os.makedirs(pathout, exist_ok=True)
         """
-
-        root_path = os.path.join('/opt/render/project/src/media', 'users', name, 'tasks', datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
-        list = ['in', 'out']
-        pathin = os.path.join(root_path, str(list[0]))
-        os.makedirs(pathin, exist_ok=True)
-        pathout = os.path.join(root_path, str(list[1]))
-        os.makedirs(pathout, exist_ok=True)
-        image = FileSystemStorage()
-        request.FILES['image'].name = "image.jpeg"
-        file = image.save(pathin + "/" + request.FILES['image'].name, request.FILES['image'])
         """        root_path = os.path.join('/media/users', name, 'tasks',datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
         list = ['in', 'out']
         pathin = os.path.join(root_path, str(list[0]))
@@ -359,6 +349,23 @@ def Macula_subservices_page(request):
         file = image.save(os.path.join(pathin, "image.jpeg"), request.FILES['image'])"""
         """subprocess.call(f"docker run  -v  {pathin}:/WorkingFiles/in  -v {pathout}:/WorkingFiles/out -v "
                         f"F:\GraduationProject\oct\ML\model2:/WorkingFiles/model binmacula")"""
+
+        docker_username = os.environ.get('DOCKER_USERNAME')
+        docker_password = os.environ.get('DOCKER_PASSWORD')
+
+        # Log into Docker Hub using credentials
+        client = docker.from_env()
+        client.login(username=docker_username, password=docker_password)
+
+        root_path = os.path.join('/opt/render/project/src/media', 'users', name, 'tasks', datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
+        list = ['in', 'out']
+        pathin = os.path.join(root_path, str(list[0]))
+        os.makedirs(pathin, exist_ok=True)
+        pathout = os.path.join(root_path, str(list[1]))
+        os.makedirs(pathout, exist_ok=True)
+        image = FileSystemStorage()
+        request.FILES['image'].name = "image.jpeg"
+        file = image.save(pathin + "/" + request.FILES['image'].name, request.FILES['image'])
         subprocess.call(
             ["docker", "run",
              "-v", f"{pathin}:/WorkingFiles/in",
