@@ -90,10 +90,14 @@ def register(request):
             doctoruser = User.objects.create_user(doctorName, doctorEmail, doctorPassword)
             doctoruser.save()
             foldername = doctorName.replace(" ", "")
-            path = "F:/GraduationProject/oct/media/users" + "/" + foldername
+            path = "/mnt/data/oct/media/users" + "/" + foldername
             if not os.path.exists(path):
                 os.makedirs(path)
             return HttpResponseRedirect('/')
+            """path = "F:/GraduationProject/oct/media/users" + "/" + foldername
+            if not os.path.exists(path):
+                os.makedirs(path)
+            return HttpResponseRedirect('/')"""
 
 
 def loginpage(request):
@@ -304,7 +308,7 @@ def Macula_subservices_page(request):
         pathout = os.path.join(root_path, str(list[1]))
         os.makedirs(pathout, exist_ok=True)
         """
-        root_path = os.path.join('media', 'users', name, 'tasks', datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
+        """        root_path = os.path.join('media', 'users', name, 'tasks', datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
         list = ['in', 'out']
         pathin = os.path.join(root_path, str(list[0]))
         os.makedirs(pathin, exist_ok=True)
@@ -312,13 +316,27 @@ def Macula_subservices_page(request):
         os.makedirs(pathout, exist_ok=True)
         image = FileSystemStorage()
         request.FILES['image'].name = "image.jpeg"
-        file = image.save(pathin + "/" + request.FILES['image'].name, request.FILES['image'])
-        subprocess.run(["docker", "pull", "noorwebsite/noor_website1"])
-        subprocess.run(
-            ["docker", "run", "-v", f"{pathin}:/WorkingFiles/in", "-v", f"{pathout}:/WorkingFiles/out", "-v",
-             "model2:/WorkingFiles/model", "noorwebsite/noor_website1"])
+        file = image.save(pathin + "/" + request.FILES['image'].name, request.FILES['image'])"""
+        root_path = os.path.join('/mnt/data/oct/media/users', name, 'tasks',datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
+        list = ['in', 'out']
+        pathin = os.path.join(root_path, str(list[0]))
+        os.makedirs(pathin, exist_ok=True)
+        pathout = os.path.join(root_path, str(list[1]))
+        os.makedirs(pathout, exist_ok=True)
+        image = FileSystemStorage()
+        request.FILES['image'].name = "image.jpeg"
+        file = image.save(os.path.join(pathin, "image.jpeg"), request.FILES['image'])
         """subprocess.call(f"docker run  -v  {pathin}:/WorkingFiles/in  -v {pathout}:/WorkingFiles/out -v "
                         f"F:\GraduationProject\oct\ML\model2:/WorkingFiles/model binmacula")"""
+        subprocess.call(
+            ["docker", "run",
+             "-v", f"{pathin}:/WorkingFiles/in",
+             "-v", f"{pathout}:/WorkingFiles/out",
+             "-v", "/mnt/data/oct/ML/model:/WorkingFiles/model",
+             "--rm",
+             "--platform", "linux/amd64",
+             "noorwebsite/noor_website1:latest"
+             ])
         readfile = open(f"{root_path}/out/out.txt", "r")
         output = readfile.readline()
         readfile.close()
