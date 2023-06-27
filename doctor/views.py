@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import send_mail,BadHeaderError
 from django.core.mail import EmailMultiAlternatives
 from threading import Thread
 from django.utils.html import format_html
@@ -43,6 +43,36 @@ def contact_page(request):
         subject = request.POST['w3lSubject']
         message = request.POST['w3lMessage'] + f"\n\nFrom User: {name}\nUser Email: {sender}"
 
+        try:
+            send_mail(
+                subject=subject,
+                message=message,
+                from_email=sender,
+                recipient_list=["noorwebsite1@gmail.com"],
+            )
+            messages.success(
+                request,
+                "Thank you for your email. We will contact you as soon as possible."
+            )
+
+            return HttpResponseRedirect('/contact/')
+
+        except BadHeaderError:
+
+            # Invalid header found.
+            return HttpResponse('Invalid header found.')
+
+        except Exception as e:
+            print(e)
+            messages.error(request, "An unexpected error occurred while sending your message.")
+
+    return render(request, 'contact.html')
+    """if request.method == 'POST':
+        name = request.POST['w3lName']
+        sender = request.POST['w3lSender']
+        subject = request.POST['w3lSubject']
+        message = request.POST['w3lMessage'] + f"\n\nFrom User: {name}\nUser Email: {sender}"
+
         send_mail(
             subject=subject,
             message=message,
@@ -58,7 +88,7 @@ def contact_page(request):
         return HttpResponseRedirect('/contact/')
 
     else:
-        return render(request, "contact.html")
+        return render(request, "contact.html")"""
 def register(request):
     if request.method == 'GET':
         return render(request, "registeration.html")
