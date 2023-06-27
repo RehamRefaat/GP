@@ -3,8 +3,6 @@ import datetime
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
-
-from oct.settings import BASE_DIR
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -341,7 +339,7 @@ def Macula_subservices_page(request):
         os.makedirs(pathout, exist_ok=True)
         """
 
-        root_path = os.path.join(BASE_DIR+'media', 'users', name, 'tasks', datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
+        root_path = os.path.join('/opt/render/project/src/media', 'users', name, 'tasks', datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
         list = ['in', 'out']
         pathin = os.path.join(root_path, str(list[0]))
         os.makedirs(pathin, exist_ok=True)
