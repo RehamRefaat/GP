@@ -359,21 +359,15 @@ def Macula_subservices_page(request):
         file = image.save(os.path.join(pathin, "image.jpeg"), request.FILES['image'])"""
         """subprocess.call(f"docker run  -v  {pathin}:/WorkingFiles/in  -v {pathout}:/WorkingFiles/out -v "
                         f"F:\GraduationProject\oct\ML\model2:/WorkingFiles/model binmacula")"""
-        client = docker.from_env()
-
-        image_name = "noorwebsite/noor_website1:latest"
-
-        volumes = {
-            pathin: {'bind': '/WorkingFiles/in', 'mode': 'rw'},
-            pathout: {'bind': '/WorkingFiles/out', 'mode': 'rw'},
-            "/WorkingFiles/model": {'bind': '/WorkingFiles/model', 'mode': 'ro'}
-        }
-
-        container = client.containers.run(
-            image=image_name,
-            volumes=volumes,
-            detach=True
-        )
+        subprocess.call(
+            ["docker", "run",
+             "-v", f"{pathin}:/WorkingFiles/in",
+             "-v", f"{pathout}:/WorkingFiles/out",
+             "-v", "/opt/render/project/src/ML/model:/WorkingFiles/model",
+             "--rm",
+             "--platform", "linux/amd64",
+             "noorwebsite/noor_website1:latest"
+             ])
         readfile = open(f"{root_path}/out/out.txt", "r")
         output = readfile.readline()
         readfile.close()
