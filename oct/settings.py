@@ -163,7 +163,7 @@ EMAIL_PORT = 587
 
 # You need to replace EMAIL_HOST_USER and EMAIL_HOST_PASSWORD with actual values
 # If two-factor authentication is enabled for your gmail account then create a new App Password instead of using your regular password.
-if DEBUG:
+if not DEBUG:
     EMAIL_HOST_USER = os.environ.get('noorwebsite1@gmail.com')
     EMAIL_HOST_PASSWORD = os.environ.get('xugvwvwljpygmftb')
 else:
