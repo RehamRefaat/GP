@@ -49,6 +49,7 @@ def contact_page(request):
                 message=message,
                 from_email=sender,
                 recipient_list=["noorwebsite1@gmail.com"],
+                fail_silently=False,
             )
             messages.success(
                 request,
@@ -315,8 +316,7 @@ def Message_Macula_page(request):
 def macula_send_email(user_email, image_path, context):
     html_content = render_to_string("email2.html", context)
     text_content = strip_tags(html_content)
-    msg = EmailMultiAlternatives('Welcome to Noor Website', text_content, settings.EMAIL_HOST_USER,
-                                 [user_email])
+    msg = EmailMultiAlternatives('Welcome to Noor Website', text_content, settings.EMAIL_HOST_USER,[user_email])
     msg.attach_alternative(html_content, "text/html")
     msg.attach_file(image_path)
     msg.send()
