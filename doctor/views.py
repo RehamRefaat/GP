@@ -20,6 +20,10 @@ from django.views.decorators.cache import never_cache
 import docker
 import subprocess
 import warnings
+from tensorflow import keras
+import cv2
+import numpy as np
+from tensorflow.keras.models import load_model
 from django.contrib.auth.decorators import login_required
 warnings.filterwarnings("ignore")
 
@@ -350,12 +354,12 @@ def Macula_subservices_page(request):
         """subprocess.call(f"docker run  -v  {pathin}:/WorkingFiles/in  -v {pathout}:/WorkingFiles/out -v "
                         f"F:\GraduationProject\oct\ML\model2:/WorkingFiles/model binmacula")"""
 
-        docker_username = os.environ.get('DOCKER_USERNAME')
+        """docker_username = os.environ.get('DOCKER_USERNAME')
         docker_password = os.environ.get('DOCKER_PASSWORD')
 
         # Log into Docker Hub using credentials
         client = docker.from_env()
-        client.login(username=docker_username, password=docker_password)
+        client.login(username=docker_username, password=docker_password)"""
 
         root_path = os.path.join('/opt/render/project/src/media', 'users', name, 'tasks', datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
         list = ['in', 'out']
@@ -366,7 +370,63 @@ def Macula_subservices_page(request):
         image = FileSystemStorage()
         request.FILES['image'].name = "image.jpeg"
         file = image.save(pathin + "/" + request.FILES['image'].name, request.FILES['image'])
-        subprocess.call(
+        "------------------NEW-----------------------"
+
+
+        with open(f"{pathout}/out.txt", "w") as out:
+            classifier = keras.models.load_model('/opt/render/project/src/ML/model2/MaculaClassifier.h5')
+            im = cv2.imread(f'{pathin}/image.jpeg')
+            im = cv2.resize(im, (512, 512))
+            im = im.reshape(1, 512, 512, 3)
+            if np.argmax(classifier.predict_on_batch(im)) == 0:
+
+                # load the model using the custom_objects argument
+                model = load_model('/opt/render/project/src/ML/model2/my_model.h5')
+
+                # predict using the loaded model
+                result = model.predict_on_batch(im)
+
+                # prepare the precentage
+                with open(f"{pathout}/out2.txt", "w") as out2:
+                    age = np.round(((result[0][0]) * 100), 2)
+                    out2.write(str(age) + '\n')
+                    cataract = np.round(((result[0][1]) * 100), 2)
+                    out2.write(str(cataract) + '\n')
+                    diabetes = np.round(((result[0][2]) * 100), 2)
+                    out2.write(str(diabetes) + '\n')
+                    glucoma = np.round(((result[0][3]) * 100), 2)
+                    out2.write(str(glucoma) + '\n')
+                    hyper = np.round(((result[0][4]) * 100), 2)
+                    out2.write(str(hyper) + '\n')
+                    myopia = np.round(((result[0][5]) * 100), 2)
+                    out2.write(str(myopia) + '\n')
+                    normal = np.round(((result[0][6]) * 100), 2)
+                    out2.write(str(normal) + '\n')
+                    other = np.round(((result[0][7]) * 100), 2)
+                    out2.write(str(other) + '\n')
+
+                    if np.argmax(result) == 0:
+                        out.write("Age related Macular Degeneration")
+                    elif np.argmax(result) == 1:
+                        out.write("Cataract")
+                    elif np.argmax(result) == 2:
+                        out.write("Diabetes")
+                    elif np.argmax(result) == 3:
+                        out.write("Glaucoma")
+                    elif np.argmax(result) == 4:
+                        out.write("Hypertension")
+                    elif np.argmax(result) == 5:
+                        out.write("Pathological Myopia")
+                    elif np.argmax(result) == 6:
+                        out.write("Normal")
+                    elif np.argmax(result) == 7:
+                        out.write("Other")
+
+            else:
+                out.write("This is not Macula image")
+        "------------------NEW-----------------------"
+
+        """subprocess.call(
             ["docker", "run",
              "-v", f"{pathin}:/WorkingFiles/in",
              "-v", f"{pathout}:/WorkingFiles/out",
@@ -374,7 +434,7 @@ def Macula_subservices_page(request):
              "--rm",
              "--platform", "linux/amd64",
              "noorwebsite/noor_website1:latest"
-             ])
+             ])"""
         readfile = open(f"{root_path}/out/out.txt", "r")
         output = readfile.readline()
         readfile.close()
