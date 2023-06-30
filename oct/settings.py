@@ -19,8 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_ROOT = os.environ.get('MEDIA_ROOT', os.path.join(BASE_DIR, 'media'))
 MEDIA_URL = '/media/'
 
-UPLOADS_ROOT = os.environ.get('UPLOADS_ROOT', '/mnt/data/myapp/uploads')
-UPLOADS_URL = '/uploads/'
+
 "New Change By Reham"
 import environ
 "New Change By Reham"
@@ -150,8 +149,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 """
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+#MEDIA_URL = '/media/'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
