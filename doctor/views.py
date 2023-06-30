@@ -126,7 +126,7 @@ def register(request):
             doctoruser = User.objects.create_user(doctorName, doctorEmail, doctorPassword)
             doctoruser.save()
             foldername = doctorName.replace(" ", "")
-            path = "noorwebsite.onrender.com/media/users" + "/" + foldername
+            path = "/media/users" + "/" + foldername
             if not os.path.exists(path):
                 os.makedirs(path)
             return HttpResponseRedirect('/')
@@ -363,7 +363,7 @@ def Macula_subservices_page(request):
         client.login(username=docker_username, password=docker_password)"""
 
         #root_path = os.path.join('/opt/render/project/src/media', 'users', name, 'tasks', datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
-        root_path = f'noorwebsite.onrender.com/media/users/{name}/tasks/' + datetime.datetime.now().strftime(
+        root_path = f'/media/users/{name}/tasks/' + datetime.datetime.now().strftime(
             '%Y/%m/%d_%H-%M-%S')
         list = ['in', 'out']
         pathin = os.path.join(root_path, str(list[0]))
