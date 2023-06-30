@@ -380,6 +380,7 @@ def Macula_subservices_page(request):
             im = im.reshape(1, 512, 512, 3)
             print("hi",np.argmax(classifier.predict_on_batch(im)))
             if np.argmax(classifier.predict_on_batch(im)) == 0:
+                print("hello")
                 # load the model using the custom_objects argument
                 model = load_model(f'/opt/render/project/src/ML/model2/my_model.h5')
 
@@ -423,6 +424,7 @@ def Macula_subservices_page(request):
                         out.write("Other")
 
             else:
+                print("reham")
                 out.write("This is not Macula image")
         "------------------NEW-----------------------"
 
