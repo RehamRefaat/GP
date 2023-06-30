@@ -373,14 +373,12 @@ def Macula_subservices_page(request):
         request.FILES['image'].name = "image.jpeg"
         file = image.save(pathin + "/" + request.FILES['image'].name, request.FILES['image'])
         "------------------NEW-----------------------"
-
-
         with open(f"{pathout}/out.txt", "w") as out:
             classifier = keras.models.load_model(f'/opt/render/project/src/ML/model2/MaculaClassifier.h5')
             im = cv2.imread(f'{pathin}/image.jpeg')
             im = cv2.resize(im, (512, 512))
             im = im.reshape(1, 512, 512, 3)
-            print(np.argmax(classifier.predict_on_batch(im)))
+            print("hi",np.argmax(classifier.predict_on_batch(im)))
             if np.argmax(classifier.predict_on_batch(im)) == 0:
                 # load the model using the custom_objects argument
                 model = load_model(f'/opt/render/project/src/ML/model2/my_model.h5')
