@@ -125,7 +125,7 @@ def register(request):
             doctoruser = User.objects.create_user(doctorName, doctorEmail, doctorPassword)
             doctoruser.save()
             foldername = doctorName.replace(" ", "")
-            path = "noorwebsite.onrender.com/media/users" + "/" + foldername
+            path = "/opt/render/project/src/media/users" + "/" + foldername
             if not os.path.exists(path):
                 os.makedirs(path)
             return HttpResponseRedirect('/')
@@ -362,7 +362,7 @@ def Macula_subservices_page(request):
         client.login(username=docker_username, password=docker_password)"""
 
         #root_path = os.path.join('/opt/render/project/src/media', 'users', name, 'tasks', datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
-        root_path = f'noorwebsite.onrender.com/media/users/{name}/tasks/' + datetime.datetime.now().strftime(
+        root_path = f'/opt/render/project/src/media/users/{name}/tasks/' + datetime.datetime.now().strftime(
             '%Y/%m/%d_%H-%M-%S')
         list = ['in', 'out']
         pathin = os.path.join(root_path, str(list[0]))
@@ -380,8 +380,6 @@ def Macula_subservices_page(request):
             im = cv2.imread(f'{pathin}/image.jpeg')
             im = cv2.resize(im, (512, 512))
             im = im.reshape(1, 512, 512, 3)
-            print(im.shape)
-            print(im.dtype)
             print(im)
             if np.argmax(classifier.predict_on_batch(im)) == 0:
 
