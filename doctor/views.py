@@ -125,7 +125,7 @@ def register(request):
             doctoruser = User.objects.create_user(doctorName, doctorEmail, doctorPassword)
             doctoruser.save()
             foldername = doctorName.replace(" ", "")
-            path = "/opt/render/project/src/media/users" + "/" + foldername
+            path = "https://noorwebsite.onrender.com/media/users" + "/" + foldername
             if not os.path.exists(path):
                 os.makedirs(path)
             return HttpResponseRedirect('/')
@@ -362,7 +362,7 @@ def Macula_subservices_page(request):
         client.login(username=docker_username, password=docker_password)"""
 
         #root_path = os.path.join('/opt/render/project/src/media', 'users', name, 'tasks', datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
-        root_path = f'/opt/render/project/src/media/users/{name}/tasks/' + datetime.datetime.now().strftime(
+        root_path = f'https://noorwebsite.onrender.com/media/users/{name}/tasks/' + datetime.datetime.now().strftime(
             '%Y/%m/%d_%H-%M-%S')
         list = ['in', 'out']
         pathin = os.path.join(root_path, str(list[0]))
@@ -374,15 +374,15 @@ def Macula_subservices_page(request):
         file = image.save(pathin + "/" + request.FILES['image'].name, request.FILES['image'])
         "------------------NEW-----------------------"
         with open(f"{pathout}/out.txt", "w") as out:
-            classifier = keras.models.load_model(f'/opt/render/project/src/ML/model2/MaculaClassifier.h5')
+            classifier = keras.models.load_model('/opt/render/project/src/MaculaClassifier.h5')
             im = cv2.imread(f'{pathin}/image.jpeg')
             im = cv2.resize(im, (512, 512))
             im = im.reshape(1, 512, 512, 3)
-            print("hi",np.argmax(classifier.predict_on_batch(im)))
+            print(im)
             if np.argmax(classifier.predict_on_batch(im)) == 0:
                 print("hello")
                 # load the model using the custom_objects argument
-                model = load_model(f'/opt/render/project/src/ML/model2/my_model.h5')
+                model = load_model('/opt/render/project/src/my_model.h5')
 
                 # predict using the loaded model
                 result = model.predict_on_batch(im)
@@ -422,10 +422,12 @@ def Macula_subservices_page(request):
                         out.write("Normal")
                     elif np.argmax(result) == 7:
                         out.write("Other")
-
             else:
                 print("reham")
-                out.write("This is not Macula image")
+                con = '/media/' + file
+                messages.success(request, format_html("This is not Macula image<br> Please upload another photo"))
+                return render(request, "services/two/subservicesnew2.html", {'context': str(con)})
+                #out.write("This is not Macula image")
         "------------------NEW-----------------------"
 
         """subprocess.call(
@@ -437,7 +439,7 @@ def Macula_subservices_page(request):
              "--platform", "linux/amd64",
              "noorwebsite/noor_website1:latest"
              ])"""
-        readfile = open(f"{root_path}/out/out.txt", "r")
+        """readfile = open(f"{root_path}/out/out.txt", "r")
         output = readfile.readline()
         readfile.close()
         con = '/media/' + file
@@ -468,14 +470,15 @@ def Macula_subservices_page(request):
                              "Diabetes": diabetes, "Glaucoma": glaucoma, "Hypertension": hypertension,
                              "PathologicalMyopia": pathological_myopia, "NormalMacular": normal_macular, "Other": other}
 
-            """def async_send():
+            def async_send():
                 macula_send_email(current_user.email,
                                   pathin + r"\\" + request.FILES['image'].name,
                                   email_context)
 
             t1 = Thread(target=async_send, args=())
-            t1.start()"""
+            t1.start()
             messages.success(request,
                              format_html(
                                  "Thank you for using Noor website.<br> You will receive an email with the result of the diagnosis immediately after the operation is completed"))
             return render(request, "services/two/subservicesnew2.html", {'context': str(con)})
+            """
