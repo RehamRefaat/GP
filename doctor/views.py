@@ -25,6 +25,7 @@ import subprocess
 import warnings
 from django.contrib.auth.decorators import login_required
 warnings.filterwarnings("ignore")
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 @login_required(login_url='login')
 @never_cache
