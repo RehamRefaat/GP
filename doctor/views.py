@@ -376,7 +376,7 @@ def Macula_subservices_page(request):
         file = image.save(pathin + "/" + request.FILES['image'].name, request.FILES['image'])
         "------------------NEW-----------------------"
         with open(f"{pathout}/out.txt", "w") as out:
-            classifier = keras.models.load_model('/opt/render/project/src/MaculaClassifier.h5')
+            classifier = keras.models.load_model('MaculaClassifier.h5')
             im = cv2.imread(f'{pathin}/image.jpeg')
             im = cv2.resize(im, (512, 512))
             im = im.reshape(1, 512, 512, 3)
