@@ -18,7 +18,7 @@ from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError
 from django.views.decorators.cache import never_cache
 from tensorflow import keras
-from tensorflow.keras.models import load_model
+from keras.models import load_model
 import cv2
 import numpy as np
 import subprocess
@@ -468,13 +468,13 @@ def Macula_subservices_page(request):
                              "Diabetes": diabetes, "Glaucoma": glaucoma, "Hypertension": hypertension,
                              "PathologicalMyopia": pathological_myopia, "NormalMacular": normal_macular, "Other": other}
 
-            def async_send():
+            """def async_send():
                 macula_send_email(current_user.email,
                                   pathin + r"\\" + request.FILES['image'].name,
                                   email_context)
 
             t1 = Thread(target=async_send, args=())
-            t1.start()
+            t1.start()"""
             messages.success(request,
                              format_html(
                                  "Thank you for using Noor website.<br> You will receive an email with the result of the diagnosis immediately after the operation is completed"))
