@@ -376,7 +376,7 @@ def Macula_subservices_page(request):
 
 
         with open(f"{pathout}/out.txt", "w") as out:
-            classifier = keras.models.load_model(f'noorwebsite.onrender.com/ML/model2/MaculaClassifier.h5')
+            classifier = keras.models.load_model(f'/opt/render/project/src/ML/model2/MaculaClassifier.h5')
             im = cv2.imread(f'{pathin}/image.jpeg')
             im = cv2.resize(im, (512, 512))
             im = im.reshape(1, 512, 512, 3)
@@ -386,7 +386,7 @@ def Macula_subservices_page(request):
             if np.argmax(classifier.predict_on_batch(im)) == 0:
 
                 # load the model using the custom_objects argument
-                model = load_model(f'noorwebsite.onrender.com/ML/model2/my_model.h5')
+                model = load_model(f'/opt/render/project/src/ML/model2/my_model.h5')
 
                 # predict using the loaded model
                 result = model.predict_on_batch(im)
