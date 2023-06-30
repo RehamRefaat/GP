@@ -380,9 +380,8 @@ def Macula_subservices_page(request):
             im = cv2.imread(f'{pathin}/image.jpeg')
             im = cv2.resize(im, (512, 512))
             im = im.reshape(1, 512, 512, 3)
-            print(im)
+            print(np.argmax(classifier.predict_on_batch(im)))
             if np.argmax(classifier.predict_on_batch(im)) == 0:
-
                 # load the model using the custom_objects argument
                 model = load_model(f'/opt/render/project/src/ML/model2/my_model.h5')
 
