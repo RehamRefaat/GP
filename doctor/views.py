@@ -362,7 +362,7 @@ def Macula_subservices_page(request):
         client.login(username=docker_username, password=docker_password)"""
 
         #root_path = os.path.join('/opt/render/project/src/media', 'users', name, 'tasks', datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
-        root_path = f'/opt/render/project/src/media/users/{name}/tasks/' + datetime.datetime.now().strftime(
+        root_path = f'noorwebsite.onrender.com/media/users/{name}/tasks/' + datetime.datetime.now().strftime(
             '%Y/%m/%d_%H-%M-%S')
         list = ['in', 'out']
         pathin = os.path.join(root_path, str(list[0]))
@@ -376,7 +376,7 @@ def Macula_subservices_page(request):
 
 
         with open(f"{pathout}/out.txt", "w") as out:
-            classifier = keras.models.load_model(f'/opt/render/project/src/media/ML/model2/MaculaClassifier.h5')
+            classifier = keras.models.load_model(f'noorwebsite.onrender.com/media/ML/model2/MaculaClassifier.h5')
             im = cv2.imread(f'{pathin}/image.jpeg')
             im = cv2.resize(im, (512, 512))
             im = im.reshape(1, 512, 512, 3)
@@ -385,7 +385,7 @@ def Macula_subservices_page(request):
             if np.argmax(classifier.predict_on_batch(im)) == 0:
 
                 # load the model using the custom_objects argument
-                model = load_model(f'/opt/render/project/src/media/ML/model2/my_model.h5')
+                model = load_model(f'noorwebsite.onrender.com/media/ML/model2/my_model.h5')
 
                 # predict using the loaded model
                 result = model.predict_on_batch(im)
