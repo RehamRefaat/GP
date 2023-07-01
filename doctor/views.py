@@ -385,6 +385,7 @@ def Macula_subservices_page(request):
             im = im.reshape(1, 512, 512, 3)
             print(im)
             if np.argmax(classifier.predict_on_batch(im)) == 0:
+                print(np.argmax(classifier.predict_on_batch(im)))
                 # load the model using the custom_objects argument
                 #model = load_model('F:/GraduationProject/oct/ML/model2/my_model.h5')
                 model = load_model(os.path.join(settings.BASE_DIR, 'ML/model2/my_model.h5'))
@@ -440,7 +441,7 @@ def Macula_subservices_page(request):
              "noorwebsite/noor_website1:latest"
              ])"""
         #readfile = open(f"{root_path}/out/out.txt", "r")
-        readfile = open(os.path.join(pathout, "out.txt"), "r")
+        """readfile = open(os.path.join(pathout, "out.txt"), "r")
         output = readfile.readline()
         readfile.close()
         #con = '/media/' + file
@@ -472,14 +473,14 @@ def Macula_subservices_page(request):
                              "Diabetes": diabetes, "Glaucoma": glaucoma, "Hypertension": hypertension,
                              "PathologicalMyopia": pathological_myopia, "NormalMacular": normal_macular, "Other": other}
 
-            """def async_send():
+            """"""def async_send():
                 macula_send_email(current_user.email,
                                   pathin + r"\\" + request.FILES['image'].name,
                                   email_context)
 
             t1 = Thread(target=async_send, args=())
-            t1.start()"""
+            t1.start()""""""
             messages.success(request,
                              format_html(
                                  "Thank you for using Noor website.<br> You will receive an email with the result of the diagnosis immediately after the operation is completed"))
-            return render(request, "services/two/subservicesnew2.html", {'context': str(con)})
+            return render(request, "services/two/subservicesnew2.html", {'context': str(con)})"""
