@@ -23,6 +23,7 @@ from keras.models import load_model
 import numpy as np
 import subprocess
 import warnings
+from django.views.decorators.csrf import csrf_protect
 
 from django.contrib.auth.decorators import login_required
 warnings.filterwarnings("ignore")
@@ -125,6 +126,8 @@ def register(request):
         else:
             doctoruser = User.objects.create_user(doctorName, doctorEmail, doctorPassword)
             doctoruser.save()
+            render_workdir = os.environ.get('RENDER_WORKDIR')
+            print(render_workdir)
             foldername = doctorName.replace(" ", "")
             path = "F:/GraduationProject/oct/media/users" + "/" + foldername
             if not os.path.exists(path):
