@@ -129,8 +129,8 @@ def register(request):
             render_workdir = os.environ.get('RENDER_WORKDIR')
             print(render_workdir)
             foldername = doctorName.replace(" ", "")
-            path = os.path.join(settings.MEDIA_ROOT, f"users/{foldername}")
-            #path = "F:/GraduationProject/oct/media/users" + "/" + foldername
+            #path = os.path.join(settings.MEDIA_ROOT, f"users/{foldername}")
+            path = "F:/GraduationProject/oct/media/users" + "/" + foldername
             if not os.path.exists(path):
                 os.makedirs(path)
             return HttpResponseRedirect('/')
@@ -363,8 +363,8 @@ def Macula_subservices_page(request):
         client.login(username=docker_username, password=docker_password)"""
 
         #root_path = os.path.join('/opt/render/project/src/media', 'users', name, 'tasks', datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
-        #root_path = f'F:/GraduationProject/oct/media/users/{name}/tasks/' + datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S')
-        root_path = os.path.join(settings.MEDIA_ROOT,f"users/{name}/tasks/{datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S')}")
+        root_path = f'F:/GraduationProject/oct/media/users/{name}/tasks/' + datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S')
+        #root_path = os.path.join(settings.MEDIA_ROOT,f"users/{name}/tasks/{datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S')}")
         list = ['in', 'out']
         pathin = os.path.join(root_path, str(list[0]))
         os.makedirs(pathin, exist_ok=True)
@@ -372,63 +372,53 @@ def Macula_subservices_page(request):
         os.makedirs(pathout, exist_ok=True)
         image = FileSystemStorage()
         request.FILES['image'].name = "image.jpeg"
-        #file = image.save(pathin + "/" + request.FILES['image'].name, request.FILES['image'])
-        file = image.save(os.path.join(pathin, request.FILES['image'].name), request.FILES['image'])
+        file = image.save(pathin + "/" + request.FILES['image'].name, request.FILES['image'])
+        #file = image.save(os.path.join(pathin, request.FILES['image'].name), request.FILES['image'])
         "------------------NEW-----------------------"
-        #with open(f"{pathout}/out.txt", "w") as out:
-            #classifier = keras.models.load_model('F:/GraduationProject/oct/ML/model2/MaculaClassifier.h5')
-        with open(os.path.join(pathout, "out.txt"), "w") as out:
-            classifier = keras.models.load_model(os.path.join(settings.BASE_DIR, 'ML/model2/MaculaClassifier.h5'))
-            #im = cv2.imread(f'{pathin}/image.jpeg')
-            im = cv2.imread(os.path.join(pathin, "image.jpeg"))
-            im = cv2.resize(im, (512, 512))
-            im = im.reshape(1, 512, 512, 3)
-            print(im)
-            if np.argmax(classifier.predict_on_batch(im)) == 0:
-                print(np.argmax(classifier.predict_on_batch(im)))
-                # load the model using the custom_objects argument
-                #model = load_model('F:/GraduationProject/oct/ML/model2/my_model.h5')
-                model = load_model(os.path.join(settings.BASE_DIR, 'ML/model2/my_model.h5'))
-                # predict using the loaded model
-                result = model.predict_on_batch(im)
-                # prepare the precentage
-                with open(os.path.join(pathout, "out2.txt"), "w") as out2:
-                    age = np.round(((result[0][0]) * 100), 2)
-                    out2.write(str(age) + '\n')
-                    cataract = np.round(((result[0][1]) * 100), 2)
-                    out2.write(str(cataract) + '\n')
-                    diabetes = np.round(((result[0][2]) * 100), 2)
-                    out2.write(str(diabetes) + '\n')
-                    glucoma = np.round(((result[0][3]) * 100), 2)
-                    out2.write(str(glucoma) + '\n')
-                    hyper = np.round(((result[0][4]) * 100), 2)
-                    out2.write(str(hyper) + '\n')
-                    myopia = np.round(((result[0][5]) * 100), 2)
-                    out2.write(str(myopia) + '\n')
-                    normal = np.round(((result[0][6]) * 100), 2)
-                    out2.write(str(normal) + '\n')
-                    other = np.round(((result[0][7]) * 100), 2)
-                    out2.write(str(other) + '\n')
-
-                    if np.argmax(result) == 0:
-                        out.write("Age related Macular Degeneration")
-                    elif np.argmax(result) == 1:
-                        out.write("Cataract")
-                    elif np.argmax(result) == 2:
-                        out.write("Diabetes")
-                    elif np.argmax(result) == 3:
-                        out.write("Glaucoma")
-                    elif np.argmax(result) == 4:
-                        out.write("Hypertension")
-                    elif np.argmax(result) == 5:
-                        out.write("Pathological Myopia")
-                    elif np.argmax(result) == 6:
-                        out.write("Normal")
-                    elif np.argmax(result) == 7:
-                        out.write("Other")
-            else:
-                print('hi')
-                out.write("This is not Macula image")
+        classifier = keras.models.load_model('F:/GraduationProject/oct/ML/model2/MaculaClassifier.h5')
+        #classifier = keras.models.load_model(os.path.join(settings.BASE_DIR, 'ML/model2/MaculaClassifier.h5'))
+        im = cv2.imread(f'{pathin}/image.jpeg')
+        #im = cv2.imread(os.path.join(pathin, "image.jpeg"))
+        im = cv2.resize(im, (512, 512))
+        im = im.reshape(1, 512, 512, 3)
+        print(im)
+        con = settings.MEDIA_URL + file
+        if np.argmax(classifier.predict_on_batch(im)) == 0:
+            print(np.argmax(classifier.predict_on_batch(im)))
+            # load the model using the custom_objects argument
+            model = load_model('F:/GraduationProject/oct/ML/model2/my_model.h5')
+            #model = load_model(os.path.join(settings.BASE_DIR, 'ML/model2/my_model.h5'))
+            # predict using the loaded model
+            result = model.predict_on_batch(im)
+            # prepare the precentage
+            age = np.round(((result[0][0]) * 100), 2)
+            cataract = np.round(((result[0][1]) * 100), 2)
+            diabetes = np.round(((result[0][2]) * 100), 2)
+            glucoma = np.round(((result[0][3]) * 100), 2)
+            hyper = np.round(((result[0][4]) * 100), 2)
+            myopia = np.round(((result[0][5]) * 100), 2)
+            normal = np.round(((result[0][6]) * 100), 2)
+            other = np.round(((result[0][7]) * 100), 2)
+            if np.argmax(result) == 0:
+                output="Age related Macular Degeneration"
+            elif np.argmax(result) == 1:
+                output="Cataract"
+            elif np.argmax(result) == 2:
+                output="Diabetes"
+            elif np.argmax(result) == 3:
+                output="Glaucoma"
+            elif np.argmax(result) == 4:
+                output="Hypertension"
+            elif np.argmax(result) == 5:
+                output="Pathological Myopia"
+            elif np.argmax(result) == 6:
+                output="Normal"
+            elif np.argmax(result) == 7:
+                output="Other"
+        else:
+            print('hi')
+            messages.success(request, format_html("This is not Macula image<br> Please upload another photo"))
+            return render(request, "services/two/subservicesnew2.html", {'context': str(con)})
         "------------------NEW-----------------------"
 
         """subprocess.call(
@@ -441,46 +431,29 @@ def Macula_subservices_page(request):
              "noorwebsite/noor_website1:latest"
              ])"""
         #readfile = open(f"{root_path}/out/out.txt", "r")
-        """readfile = open(os.path.join(pathout, "out.txt"), "r")
-        output = readfile.readline()
-        readfile.close()
+        #readfile = open(os.path.join(pathout, "out.txt"), "r")
+        #output = readfile.readline()
+        #readfile.close()
         #con = '/media/' + file
-        con = settings.MEDIA_URL + file
-        if output == "This is not Macula image":
-            messages.success(request, format_html("This is not Macula image<br> Please upload another photo"))
-            return render(request, "services/two/subservicesnew2.html", {'context': str(con)})
-        else:
-            readfile2 = open(f"{root_path}/out/out2.txt", "r")
-            lines = readfile2.readlines()
-            new_lst = [''.join(line.splitlines()) for line in lines]
-            readfile2.close()
-            macular_degeneration = new_lst[0]
-            cataract = new_lst[1]
-            diabetes = new_lst[2]
-            glaucoma = new_lst[3]
-            hypertension = new_lst[4]
-            pathological_myopia = new_lst[5]
-            normal_macular = new_lst[6]
-            other = new_lst[7]
-            ser = Operation.objects.create(Input=request.FILES['image'], Output=output,
-                                           MacularDegeneration=macular_degeneration, Cataract=cataract,
-                                           Diabetes=diabetes, Glaucoma=glaucoma, Hypertension=hypertension,
-                                           PathologicalMyopia=pathological_myopia, NormalMacular=normal_macular,
-                                           Other=other, ProcessName="Macula")
-            ser.save()
-            ser.users.add(current_user.id)
-            email_context = {"output": output, "MacularDegeneration": macular_degeneration, "Cataract": cataract,
-                             "Diabetes": diabetes, "Glaucoma": glaucoma, "Hypertension": hypertension,
-                             "PathologicalMyopia": pathological_myopia, "NormalMacular": normal_macular, "Other": other}
+        ser = Operation.objects.create(Input=request.FILES['image'], Output=output,
+                                       MacularDegeneration=age, Cataract=cataract,
+                                       Diabetes=diabetes, Glaucoma=glucoma, Hypertension=hyper,
+                                       PathologicalMyopia=myopia, NormalMacular=normal,
+                                       Other=other, ProcessName="Macula")
+        ser.save()
+        ser.users.add(current_user.id)
+        email_context = {"output": output, "MacularDegeneration": age, "Cataract": cataract,
+                         "Diabetes": diabetes, "Glaucoma": glucoma, "Hypertension": hyper,
+                         "PathologicalMyopia": myopia, "NormalMacular": normal, "Other": other}
 
-            """"""def async_send():
-                macula_send_email(current_user.email,
-                                  pathin + r"\\" + request.FILES['image'].name,
-                                  email_context)
+        def async_send():
+            macula_send_email(current_user.email,
+                              pathin + r"\\" + request.FILES['image'].name,
+                              email_context)
 
-            t1 = Thread(target=async_send, args=())
-            t1.start()""""""
-            messages.success(request,
-                             format_html(
-                                 "Thank you for using Noor website.<br> You will receive an email with the result of the diagnosis immediately after the operation is completed"))
-            return render(request, "services/two/subservicesnew2.html", {'context': str(con)})"""
+        t1 = Thread(target=async_send, args=())
+        t1.start()
+        messages.success(request,
+                         format_html(
+                             "Thank you for using Noor website.<br> You will receive an email with the result of the diagnosis immediately after the operation is completed"))
+        return render(request, "services/two/subservicesnew2.html", {'context': str(con)})
