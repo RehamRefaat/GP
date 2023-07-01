@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'oct.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME':'railway',
@@ -91,8 +91,9 @@ DATABASES = {
         'PASSWORD':'VtOBTTF6I0h6nm0tizNL',
         'PORT':'7049'
     }
-}
-"""DATABASES = {
+}"""
+"""REHAM
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME':'gradproject',

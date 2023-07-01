@@ -4,6 +4,7 @@ from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from .models import *
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -19,11 +20,10 @@ from django.core.exceptions import ValidationError
 from django.views.decorators.cache import never_cache
 from tensorflow import keras
 from keras.models import load_model
-#import cv2
+import cv2
 import numpy as np
 import subprocess
 import warnings
-from django.views.decorators.csrf import csrf_protect
 
 from django.contrib.auth.decorators import login_required
 warnings.filterwarnings("ignore")
@@ -129,7 +129,8 @@ def register(request):
             render_workdir = os.environ.get('RENDER_WORKDIR')
             print(render_workdir)
             foldername = doctorName.replace(" ", "")
-            path = "F:/GraduationProject/oct/media/users" + "/" + foldername
+            path = os.path.join(settings.MEDIA_ROOT, f"users/{foldername}")
+            #path = "F:/GraduationProject/oct/media/users" + "/" + foldername
             if not os.path.exists(path):
                 os.makedirs(path)
             return HttpResponseRedirect('/')
@@ -362,8 +363,8 @@ def Macula_subservices_page(request):
         client.login(username=docker_username, password=docker_password)"""
 
         #root_path = os.path.join('/opt/render/project/src/media', 'users', name, 'tasks', datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S'))
-        root_path = f'F:/GraduationProject/oct/media/users/{name}/tasks/' + datetime.datetime.now().strftime(
-            '%Y/%m/%d_%H-%M-%S')
+        #root_path = f'F:/GraduationProject/oct/media/users/{name}/tasks/' + datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S')
+        root_path = os.path.join(settings.MEDIA_ROOT,f"users/{name}/tasks/{datetime.datetime.now().strftime('%Y/%m/%d_%H-%M-%S')}")
         list = ['in', 'out']
         pathin = os.path.join(root_path, str(list[0]))
         os.makedirs(pathin, exist_ok=True)
@@ -371,22 +372,26 @@ def Macula_subservices_page(request):
         os.makedirs(pathout, exist_ok=True)
         image = FileSystemStorage()
         request.FILES['image'].name = "image.jpeg"
-        file = image.save(pathin + "/" + request.FILES['image'].name, request.FILES['image'])
+        #file = image.save(pathin + "/" + request.FILES['image'].name, request.FILES['image'])
+        file = image.save(os.path.join(pathin, request.FILES['image'].name), request.FILES['image'])
         "------------------NEW-----------------------"
-        """with open(f"{pathout}/out.txt", "w") as out:
-            classifier = keras.models.load_model('F:/GraduationProject/oct/ML/model2/MaculaClassifier.h5')
-            im = cv2.imread(f'{pathin}/image.jpeg')
+        #with open(f"{pathout}/out.txt", "w") as out:
+            #classifier = keras.models.load_model('F:/GraduationProject/oct/ML/model2/MaculaClassifier.h5')
+        with open(os.path.join(pathout, "out.txt"), "w") as out:
+            classifier = keras.models.load_model(os.path.join(settings.BASE_DIR, 'ML/model2/MaculaClassifier.h5'))
+            #im = cv2.imread(f'{pathin}/image.jpeg')
+            im = cv2.imread(os.path.join(pathin, "image.jpeg"))
             im = cv2.resize(im, (512, 512))
             im = im.reshape(1, 512, 512, 3)
             print(im)
             if np.argmax(classifier.predict_on_batch(im)) == 0:
                 # load the model using the custom_objects argument
-                model = load_model('F:/GraduationProject/oct/ML/model2/my_model.h5')
-
+                #model = load_model('F:/GraduationProject/oct/ML/model2/my_model.h5')
+                model = load_model(os.path.join(settings.BASE_DIR, 'ML/model2/my_model.h5'))
                 # predict using the loaded model
                 result = model.predict_on_batch(im)
                 # prepare the precentage
-                with open(f"{pathout}/out2.txt", "w") as out2:
+                with open(os.path.join(pathout, "out2.txt"), "w") as out2:
                     age = np.round(((result[0][0]) * 100), 2)
                     out2.write(str(age) + '\n')
                     cataract = np.round(((result[0][1]) * 100), 2)
@@ -421,7 +426,8 @@ def Macula_subservices_page(request):
                     elif np.argmax(result) == 7:
                         out.write("Other")
             else:
-                out.write("This is not Macula image")"""
+                print('hi')
+                out.write("This is not Macula image")
         "------------------NEW-----------------------"
 
         """subprocess.call(
@@ -433,10 +439,12 @@ def Macula_subservices_page(request):
              "--platform", "linux/amd64",
              "noorwebsite/noor_website1:latest"
              ])"""
-        readfile = open(f"{root_path}/out/out.txt", "r")
+        #readfile = open(f"{root_path}/out/out.txt", "r")
+        readfile = open(os.path.join(pathout, "out.txt"), "r")
         output = readfile.readline()
         readfile.close()
-        con = '/media/' + file
+        #con = '/media/' + file
+        con = settings.MEDIA_URL + file
         if output == "This is not Macula image":
             messages.success(request, format_html("This is not Macula image<br> Please upload another photo"))
             return render(request, "services/two/subservicesnew2.html", {'context': str(con)})
@@ -464,13 +472,13 @@ def Macula_subservices_page(request):
                              "Diabetes": diabetes, "Glaucoma": glaucoma, "Hypertension": hypertension,
                              "PathologicalMyopia": pathological_myopia, "NormalMacular": normal_macular, "Other": other}
 
-            def async_send():
+            """def async_send():
                 macula_send_email(current_user.email,
                                   pathin + r"\\" + request.FILES['image'].name,
                                   email_context)
 
             t1 = Thread(target=async_send, args=())
-            t1.start()
+            t1.start()"""
             messages.success(request,
                              format_html(
                                  "Thank you for using Noor website.<br> You will receive an email with the result of the diagnosis immediately after the operation is completed"))
