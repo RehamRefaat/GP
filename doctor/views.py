@@ -19,7 +19,7 @@ from django.core.exceptions import ValidationError
 from django.views.decorators.cache import never_cache
 from tensorflow import keras
 from keras.models import load_model
-import cv2
+import cv
 import numpy as np
 import subprocess
 import warnings
@@ -372,8 +372,8 @@ def Macula_subservices_page(request):
         "------------------NEW-----------------------"
         with open(f"{pathout}/out.txt", "w") as out:
             classifier = keras.models.load_model('F:/GraduationProject/oct/ML/model2/MaculaClassifier.h5')
-            im = cv2.imread(f'{pathin}/image.jpeg')
-            im = cv2.resize(im, (512, 512))
+            im = cv.imread(f'{pathin}/image.jpeg')
+            im = cv.resize(im, (512, 512))
             im = im.reshape(1, 512, 512, 3)
             print(im)
             if np.argmax(classifier.predict_on_batch(im)) == 0:
