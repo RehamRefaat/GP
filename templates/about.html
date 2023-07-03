@@ -211,7 +211,7 @@
         </div>
 
         <div class="card__content">
-          <span class="card__title">Aliaa Yaseen Abdelkareem</span>
+          <span class="card__title">Aliaa Yaseen Abd El-kareem</span>
           <span class="card__text">(Team Member)</span>
           <span class="card__name">Front-End Web Developer</span>
           <div class="social-container">
@@ -228,7 +228,33 @@
 <!-- our team -->
 
 
+  <!-- Swiper JS -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+   <!-- <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+ Initialize Swiper
+        loop: true, -->
 
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      autoplay:true,
+      autoplayTimeout:1000,
+      autoplayHoverPause:true,
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 300,
+        modifier: 1,
+        slideShadows: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+      },
+    });
+  </script>
 
 
 {%endblock%}
